@@ -53,11 +53,11 @@ void Cube_Systems(flecs::world& ecs) {
                 sc.shading.setVec3("objectColor", st.object_color.x, st.object_color.y, st.object_color.z);
                 sc.shading.setVec3("lightColor", st.light_color.x, st.light_color.y, st.light_color.z);
                 sc.shading.setVec3("lightPos", sc.light_pos);
-                sc.shading.setVec3("viewPos", camera_component->Position);
+                sc.shading.setVec3("viewPos", camera_component->position);
             }
             
-            glm::mat4 projection_temp = glm::perspective(glm::radians(camera_component->Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-            glm::mat4 view_temp = glm::lookAt(camera_component->Position, camera_component->Position + camera_component->Front, camera_component->Up);
+            glm::mat4 projection_temp = glm::perspective(glm::radians(camera_component->zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+            glm::mat4 view_temp = glm::lookAt(camera_component->position, camera_component->position + camera_component->front, camera_component->up);
             
             sc.shading.setMat4("projection", projection_temp);
             sc.shading.setMat4("view", view_temp);

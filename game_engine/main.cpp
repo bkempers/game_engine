@@ -30,7 +30,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 // Flecs ECS Initialization
 flecs::world world;
 
-flecs::query<Component::Camera, Component::CameraSettings, Component::Keyboard, Component::MouseScroll> cameraQuery = world.query<Component::Camera, Component::CameraSettings, Component::Keyboard, Component::MouseScroll>();
+flecs::query<Component::Camera> cameraQuery = world.query<Component::Camera>();
 
 static void error_callback(int error, const char* description)
 {
@@ -44,11 +44,11 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
     float xoff = static_cast<float>(xoffset);
     float yoff = static_cast<float>(yoffset);
     
-    // get GLFW inputs for entities
-    cameraQuery.each([xoff, yoff](flecs::entity e, Component::Camera &c, Component::CameraSettings &cs, Component::Keyboard &k, Component::MouseScroll& ms) {
-        if(!ms.ScrollEnable){
-            ms.XOffset = xoff;
-            ms.YOffset = xoff;
+    flecs::entity camera_entity = world.lookup("camera");
+    camera_entity.set([xoff, yoff](Component::Camera& c) {
+        if(!c.mouse.scroll_enable){
+            c.mouse.x_offset = xoff;
+            c.mouse.y_offset = yoff;
         }
     });
 }

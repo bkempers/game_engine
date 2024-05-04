@@ -38,43 +38,27 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
     
     //flecs camera entity
     world.entity("camera")
-        .set<Component::Camera>({
-            glm::vec3(0.0f, 1.5f, 5.0f), //Position
-            glm::vec3(0.0f, 0.0f, -1.0f), //Front
-            glm::vec3(0.0f, 1.0f, 0.0f), //Up
-            glm::vec3(0.0f, 0.0f, 0.0f), //Right
-            glm::vec3(0.0f, 1.0f, 0.0f), //WorldUp
-            CAMERA_YAW, //Yaw
-            CAMERA_PITCH, //Pitch
-            CAMERA_SPEED, //MovementSpeed
-            CAMERA_SENSITIVITY, //MouseSensitivity
-            CAMERA_ZOOM //Zoom
-        })
-//        .set<Component::MouseSettings>({
-//            true,
-//            true,
-//            true
-//        })
-        .set<Component::CameraSettings>({
-            true, //MouseEnable
-            true, //FirstMouse
-            SCR_WIDTH / 2.0f, //LastX
-            SCR_HEIGHT / 2.0f, //LastY
-            0, //XOffset
-            0, //YOffset
-            0, //XPosIn
-            0 //YPosIn
-        })
-        .set<Component::Keyboard>({
-            0, //Key
-            0, //Action
-            0, //Scancode
-            0, //Mods
-            0, //DeltaTime
-        })
-        .set<Component::MouseScroll>({
-            0, //XOffset
-            0, //YOffset
+        .set([](Component::Camera& c){
+            //camera
+            c.position = glm::vec3(0.0f, 1.5f, 5.0f);
+            c.front = glm::vec3(0.0f, 0.0f, -1.0f);
+            c.up = glm::vec3(0.0f, 1.0f, 0.0f);
+            c.right = glm::vec3(0.0f, 0.0f, 0.0f);
+            c.world_up = glm::vec3(0.0f, 1.0f, 0.0f);
+            c.yaw = CAMERA_YAW;
+            c.pitch = CAMERA_PITCH;
+            c.zoom = CAMERA_ZOOM;
+            
+            //settings
+            c.settings.movement_speed = CAMERA_SPEED;
+            c.settings.mouse_sensitivity = CAMERA_SENSITIVITY;
+            c.settings.mouse_enable = true;
+            c.settings.first_mouse = true;
+            c.settings.last_x = SCR_WIDTH / 2.0f;
+            c.settings.last_y = SCR_HEIGHT / 2.0f;
+            
+            //mouse
+            c.mouse.scroll_enable = true;
         });
     Camera_Systems(world);
         

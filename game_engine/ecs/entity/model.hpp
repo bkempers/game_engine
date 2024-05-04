@@ -236,8 +236,8 @@ void Model_Systems(flecs::world &ecs) {
             // be sure to activate shader when setting uniforms/drawing objects
             mc.shader.use();
             
-            glm::mat4 projection_temp = glm::perspective(glm::radians(camera_component->Zoom), (float)1200 / (float)750, 0.1f, 100.0f);
-            glm::mat4 view_temp = glm::lookAt(camera_component->Position, camera_component->Position + camera_component->Front, camera_component->Up);
+            glm::mat4 projection_temp = glm::perspective(glm::radians(camera_component->zoom), (float)1200 / (float)750, 0.1f, 100.0f);
+            glm::mat4 view_temp = glm::lookAt(camera_component->position, camera_component->position + camera_component->front, camera_component->up);
             
             mc.shader.setMat4("projection", projection_temp);
             mc.shader.setMat4("view", view_temp);

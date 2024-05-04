@@ -53,48 +53,40 @@ public:
         float last_frame;
     };
     
-    struct Camera{
-        glm::vec3 Position;
-        glm::vec3 Front;
-        glm::vec3 Up;
-        glm::vec3 Right;
-        glm::vec3 WorldUp;
-        float Yaw;
-        float Pitch;
-        float MovementSpeed;
-        float MouseSensitivity;
-        float Zoom;
-    };
-    
-//    struct MouseSettings{
-//        bool MouseEnable;
-//        bool FirstMouse;
-//        bool ScrollEnable;
-//    };
-    
     struct CameraSettings{
-        bool MouseEnable;
-        bool FirstMouse;
-        float LastX;
-        float LastY;
-        float XOffset;
-        float YOffset;
-        float XPosIn;
-        float YPosIn;
+        bool mouse_enable;
+        bool first_mouse;
+        float movement_speed;
+        float mouse_sensitivity;
+        float last_x;
+        float last_y;
     };
     
-    struct MouseScroll{
-        bool ScrollEnable;
-        float XOffset;
-        float YOffset;
+    struct Mouse{
+        bool scroll_enable;
+        float x_offset;
+        float y_offset;
+    };
+    
+    struct Camera{
+        glm::vec3 position;
+        glm::vec3 front;
+        glm::vec3 up;
+        glm::vec3 right;
+        glm::vec3 world_up;
+        float yaw;
+        float pitch;
+        float zoom;
+        CameraSettings settings;
+        Mouse mouse;
     };
     
     struct Keyboard{
-        int Key;
-        int Action;
-        int ScanCode;
-        int Mods;
-        float DeltaTime;
+        int key;
+        int action;
+        int scan_code;
+        int mods;
+        float delta_time;
     };
     
     struct VertexCube{
@@ -161,6 +153,15 @@ public:
         float rotation_x;
         float rotation_y;
         float rotation_z;
+    };
+    
+    struct Transformations{
+        glm::mat4 model;
+        glm::vec3 color;
+        glm::vec3 light_color;
+        glm::vec3 translate;
+        glm::vec3 scale;
+        glm::vec3 rotation;
     };
     
     struct GUI{
