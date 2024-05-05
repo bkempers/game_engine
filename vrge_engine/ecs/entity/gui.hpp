@@ -11,9 +11,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../../gui/imgui.h"
-#include "../../gui/imgui_impl_glfw.h"
-#include "../../gui/imgui_impl_opengl3.h"
+#include "../../gui/imgui/imgui.h"
+#include "../../gui/imgui/imgui_impl_glfw.h"
+#include "../../gui/imgui/imgui_impl_opengl3.h"
 
 #include <string>
 #include <stdio.h>
@@ -113,41 +113,24 @@ void GUI_Systems(flecs::world& ecs){
                             if(cube_entity) {
                                 static float color[3] = { 1.0f, 0.5f, 0.31f };
                                 ImGui::ColorEdit3("Entity Color", (float *)&color);
-                                cube_entity.set([](Component::ShaderTransformations& st) {
-                                    st.object_color = glm::vec3(color[0], color[1], color[2]);
+                                cube_entity.set([](Component::Transformation& transform) {
+                                    transform.color = glm::vec3(color[0], color[1], color[2]);
                                 });
                                 
-                                static float x_angle = 0.0f;
-                                ImGui::SliderAngle("X-Axis Rotation", &x_angle); ImGui::SameLine();
-                                if(ImGui::Button("Reset")){
-                                    x_angle = 0.0f;
-                                }
-                                cube_entity.set([](Component::ShaderTransformations& st) {
-                                    if (st.rotation_x != x_angle) {
-                                        st.rotation_x = x_angle;
-                                        st.model = glm::rotate(st.model, glm::radians(st.rotation_x), glm::vec3(1.0f, 0.0f, 0.0f));
+                                float rotation_vec[4] = { 0.0f, 0.0f, 0.0f, 0.0f};
+                                ImGui::SliderFloat3("Rotation", rotation_vec, 0.0f, 360.0f);
+                                cube_entity.set([rotation_vec](Component::Transformation& transform) {
+                                    if (transform.rotation.x != rotation_vec[0]) {
+                                        transform.rotation.x = rotation_vec[0];
+                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
                                     }
-                                });
-                                static float y_angle = 0.0f;
-                                ImGui::SliderAngle("Y-Axis Rotation", &y_angle); ImGui::SameLine();
-                                if(ImGui::Button("Reset")){
-                                    y_angle = 0.0f;
-                                }
-                                cube_entity.set([](Component::ShaderTransformations& st) {
-                                    if (st.rotation_y != y_angle) {
-                                        st.rotation_y = y_angle;
-                                        st.model = glm::rotate(st.model, glm::radians(st.rotation_y), glm::vec3(0.0f, 1.0f, 0.0f));
+                                    if (transform.rotation.y != rotation_vec[1]) {
+                                        transform.rotation.y = rotation_vec[1];
+                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
                                     }
-                                });
-                                static float z_angle = 0.0f;
-                                ImGui::SliderAngle("Z-Axis Rotation", &z_angle); ImGui::SameLine();
-                                if(ImGui::Button("Reset")){
-                                    z_angle = 0.0f;
-                                }
-                                cube_entity.set([](Component::ShaderTransformations& st) {
-                                    if (st.rotation_z != z_angle) {
-                                        st.rotation_z = z_angle;
-                                        st.model = glm::rotate(st.model, glm::radians(st.rotation_z), glm::vec3(0.0f, 0.0f, 1.0f));
+                                    if (transform.rotation.z != rotation_vec[2]) {
+                                        transform.rotation.z = rotation_vec[2];
+                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
                                     }
                                 });
                             }
@@ -158,7 +141,6 @@ void GUI_Systems(flecs::world& ecs){
                     ImGui::EndChild();
                     ImGui::EndGroup();
                 }
-                
             }
 
             ImGui::End();

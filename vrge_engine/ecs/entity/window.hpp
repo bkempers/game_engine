@@ -43,7 +43,7 @@ void Window_Systems(flecs::world& ecs) {
                     }
                 });
             }
-//             wireframe mode
+            //wireframe mode
             if (glfwGetKey(w.window, GLFW_KEY_PERIOD) == GLFW_PRESS)
             {
                 GLint polygonMode;

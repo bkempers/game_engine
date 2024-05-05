@@ -28,6 +28,9 @@
 unsigned int SCR_WIDTH = 1450;
 unsigned int SCR_HEIGHT = 775;
 
+// rendering
+//unsigned int VBO, VAO;
+
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
 enum Camera_Movement {
     FORWARD,
@@ -89,53 +92,56 @@ public:
         float delta_time;
     };
     
+    struct World{
+        
+    };
+    
     struct VertexCube{
         unsigned int VBO;
         unsigned int VAO;
-        GLuint frame_buffer;
-        float vertices[216] = {
-            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-             0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-
-             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-
-            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-
-            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-             0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
-        };
+//        float vertices[216] = {
+//            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//             0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//            -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+//
+//            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//             0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//            -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+//
+//            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//            -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+//            -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+//
+//             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//             0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+//             0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+//
+//            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//             0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//            -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+//            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+//
+//            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+//             0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+//             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//            -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+//            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+//        };
     };
     
     struct ShaderComponent{
@@ -155,10 +161,16 @@ public:
         float rotation_z;
     };
     
-    struct Transformations{
+    struct ComponentShader{
+        Shader shader = Shader();
+        bool light_shader;
+    };
+    
+    struct Transformation{
         glm::mat4 model;
         glm::vec3 color;
         glm::vec3 light_color;
+        glm::vec3 light_pos;
         glm::vec3 translate;
         glm::vec3 scale;
         glm::vec3 rotation;
@@ -220,7 +232,6 @@ public:
             const VertexCube* component = entity.get<VertexCube>();
             ImGui::Text("VBO: %d", component->VBO);
             ImGui::Text("VAO: %d", component->VAO);
-            ImGui::Text("Frame Buffer: %u", component->frame_buffer);
         }
         else if(id == ecs.id<Component::ShaderComponent>())
         {

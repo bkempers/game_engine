@@ -25,14 +25,15 @@
 void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
     //flecs window entity
     world.entity("main_window")
-        .set<Component::Window>({
-            window,
-            static_cast<int>(SCR_WIDTH),
-            static_cast<int>(SCR_HEIGHT),
-        })
-        .set<Component::Frame>({
-            0.0f,
-            0.0f
+        .set([window](Component::Window& w, Component::Frame& f){
+            //window
+            w.window = window;
+            w.src_width = static_cast<int>(SCR_WIDTH);
+            w.src_height = static_cast<int>(SCR_HEIGHT);
+            
+            //frame
+            f.delta_time = 0.0f;
+            f.last_frame = 0.0f;
         });
     Window_Systems(world);
     
@@ -65,38 +66,45 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
     // flecs gui entity
     world.entity("gui")
         .set([](Component::GUI& gui){
-            gui.selected_entity = "cubeObject";
+            //gui.selected_entity = "cubeObject";
         });
     GUI_Systems(world);
     
-    world.entity("cubeObject")
-        .set([](Component::VertexCube& vc, Component::ShaderComponent& sc, Component::ShaderTransformations& st){
-            //shader initialization
-            sc.shading.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.fs");
-            sc.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
-            sc.light_source = false;
-            
-            //object transformations
-            st.model = glm::mat4(1.0f);
-            
-            st.object_color = glm::vec3(1.0f, 0.5f, 0.31f);
-            st.light_color = glm::vec3(1.0f, 1.0f, 1.0f);
-        });
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            for (int z = 0; z < 8; z++) {
+                world.entity()
+                    .set([x, y, z](Component::VertexCube& vc, Component::ComponentShader& shader, Component::Transformation& transform){
+                        //shader initialization
+                        shader.shader.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.fs");
+                        shader.light_shader = false;
+
+                        //object transformations
+                        transform.model = glm::mat4(1.0f);
+                        transform.translate = glm::vec3(static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
+                        transform.model = glm::translate(transform.model, transform.translate);
+                        transform.color = glm::vec3(1.0f, 0.5f, 0.31f);
+                        transform.light_color = glm::vec3(1.0f, 1.0f, 1.0f);
+                        transform.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
+                    });
+            }
+        }
+    }
         
-    world.entity("lightCubeObject")
-        .set([](Component::VertexCube& vc, Component::ShaderComponent& sc, Component::ShaderTransformations& st){
-            //shader initialization
-            sc.shading.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/light_cube.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/light_cube.fs");
-            sc.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
-            sc.light_source = true;
-            
-            //model
-            st.model = glm::mat4(1.0f);
-            st.translate = sc.light_pos;
-            st.scale = glm::vec3(0.2f);
-            st.model = glm::translate(st.model, st.translate);
-            st.model = glm::scale(st.model, st.scale); // a smaller cube
-        });
+//    world.entity("lightCubeObject")
+//        .set([](Component::VertexCube& vc, Component::ComponentShader& shader, Component::Transformation& transform){
+//            //shader initialization
+//            shader.shader.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/light_cube.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/light_cube.fs");
+//            shader.light_shader = true;
+//
+//            //model
+//            transform.model = glm::mat4(1.0f);
+//            transform.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
+//            transform.translate = transform.light_pos;
+//            transform.scale = glm::vec3(0.2f);
+//            transform.model = glm::translate(transform.model, transform.translate);
+//            transform.model = glm::scale(transform.model, transform.scale); // a smaller cube
+//        });
     
     Cube_Systems(world);
     

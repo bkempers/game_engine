@@ -62,7 +62,7 @@
 		58232BC52B9727770030E891 /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../usr/local/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
 		58232BC72B9727EE0030E891 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = ../../../../usr/local/lib/libglfw.3.dylib; sourceTree = "<group>"; };
 		58232BC92B972A730030E891 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
-		58232BD22B972C1B0030E891 /* game_engine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = game_engine.entitlements; sourceTree = "<group>"; };
+		58232BD22B972C1B0030E891 /* vrge_engine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vrge_engine.entitlements; sourceTree = "<group>"; };
 		5829B6EA2B9E135A00229EC9 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		5829B6F02B9E177700229EC9 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		5829B6F22B9E189C00229EC9 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		58232BAC2B9725BE0030E891 = {
 			isa = PBXGroup;
 			children = (
-				58232BB72B9725BE0030E891 /* game_engine */,
+				58232BB72B9725BE0030E891 /* vrge_engine */,
 				58232BB62B9725BE0030E891 /* Products */,
 				58232BBF2B9726230030E891 /* Frameworks */,
 			);
@@ -150,7 +150,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		58232BB72B9725BE0030E891 /* game_engine */ = {
+		58232BB72B9725BE0030E891 /* vrge_engine */ = {
 			isa = PBXGroup;
 			children = (
 				5829B7B52BD9B02D00229EC9 /* resources */,
@@ -160,10 +160,10 @@
 				5829B6F52BA5ADF100229EC9 /* texture */,
 				5829B6ED2B9E171200229EC9 /* shader */,
 				5829B6EA2B9E135A00229EC9 /* glad.c */,
-				58232BD22B972C1B0030E891 /* game_engine.entitlements */,
+				58232BD22B972C1B0030E891 /* vrge_engine.entitlements */,
 				58232BB82B9725BE0030E891 /* main.cpp */,
 			);
-			path = game_engine;
+			path = vrge_engine;
 			sourceTree = "<group>";
 		};
 		58232BBF2B9726230030E891 /* Frameworks */ = {
@@ -260,23 +260,7 @@
 		5829B7932BD5B71A00229EC9 /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */,
-				5829B7A92BD5B80200229EC9 /* imgui_impl_glfw.h */,
-				5829B79F2BD5B78F00229EC9 /* imconfig.h */,
-				5829B7A12BD5B78F00229EC9 /* imgui_demo.cpp */,
-				5829B7A02BD5B78F00229EC9 /* imgui_draw.cpp */,
-				5829B79C2BD5B78F00229EC9 /* imgui_impl_opengl3_loader.h */,
-				5829B7972BD5B78E00229EC9 /* imgui_impl_opengl3.cpp */,
-				5829B79E2BD5B78F00229EC9 /* imgui_impl_opengl3.h */,
-				5829B7992BD5B78E00229EC9 /* imgui_internal.h */,
-				5829B79A2BD5B78E00229EC9 /* imgui_tables.cpp */,
-				5829B7942BD5B78E00229EC9 /* imgui_widgets.cpp */,
-				5829B7A22BD5B78F00229EC9 /* imgui.cpp */,
-				5829B7962BD5B78E00229EC9 /* imgui.h */,
-				5829B79B2BD5B78F00229EC9 /* imstb_rectpack.h */,
-				5829B7982BD5B78E00229EC9 /* imstb_textedit.h */,
-				5829B79D2BD5B78F00229EC9 /* imstb_truetype.h */,
-				5829B7952BD5B78E00229EC9 /* LICENSE.txt */,
+				58A4C3B42BE6FD2E001C8EB8 /* imgui */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -302,6 +286,30 @@
 				5829B7CC2BD9B0FC00229EC9 /* specular.jpg */,
 			);
 			path = backpack;
+			sourceTree = "<group>";
+		};
+		58A4C3B42BE6FD2E001C8EB8 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				5829B79C2BD5B78F00229EC9 /* imgui_impl_opengl3_loader.h */,
+				5829B7972BD5B78E00229EC9 /* imgui_impl_opengl3.cpp */,
+				5829B79E2BD5B78F00229EC9 /* imgui_impl_opengl3.h */,
+				5829B7992BD5B78E00229EC9 /* imgui_internal.h */,
+				5829B79A2BD5B78E00229EC9 /* imgui_tables.cpp */,
+				5829B7942BD5B78E00229EC9 /* imgui_widgets.cpp */,
+				5829B7A22BD5B78F00229EC9 /* imgui.cpp */,
+				5829B7962BD5B78E00229EC9 /* imgui.h */,
+				5829B79B2BD5B78F00229EC9 /* imstb_rectpack.h */,
+				5829B7982BD5B78E00229EC9 /* imstb_textedit.h */,
+				5829B79D2BD5B78F00229EC9 /* imstb_truetype.h */,
+				5829B7952BD5B78E00229EC9 /* LICENSE.txt */,
+				5829B7A02BD5B78F00229EC9 /* imgui_draw.cpp */,
+				5829B7A12BD5B78F00229EC9 /* imgui_demo.cpp */,
+				5829B79F2BD5B78F00229EC9 /* imconfig.h */,
+				5829B7A92BD5B80200229EC9 /* imgui_impl_glfw.h */,
+				5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */,
+			);
+			path = imgui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,7 +347,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58232BB02B9725BE0030E891 /* Build configuration list for PBXProject "game_engine" */;
+			buildConfigurationList = 58232BB02B9725BE0030E891 /* Build configuration list for PBXProject "vrge_engine" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -505,6 +513,8 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"/usr/local/Cellar/**",
+					"$(SRCROOT)/**",
+					"$HOME/vcpkg/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -526,6 +536,8 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"/usr/local/Cellar/**",
+					"$(SRCROOT)/**",
+					"$HOME/vcpkg/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -541,7 +553,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58232BB02B9725BE0030E891 /* Build configuration list for PBXProject "game_engine" */ = {
+		58232BB02B9725BE0030E891 /* Build configuration list for PBXProject "vrge_engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58232BBA2B9725BE0030E891 /* Debug */,

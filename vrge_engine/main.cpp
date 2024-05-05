@@ -15,7 +15,7 @@
 #include "shader/shader.hpp"
 #include "texture/stb_image.h"
 
-#include "gui/imgui.h"
+#include "gui/imgui/imgui.h"
 #include "ecs/flecs.h"
 #include "ecs/entity/entity.hpp"
 #include "ecs/component/component.hpp"
@@ -98,14 +98,15 @@ int main()
     // build and compile our shader program
     glEnable(GL_DEPTH_TEST);
     
+    //opengl face culling
+//    glEnable(GL_CULL_FACE);
+//    glCullFace(GL_BACK);
+    
     //setup flecs entity
     setup_flecs_entities(world, window);
     flecs::entity window_entity = world.lookup("main_window");
     flecs::entity gui_entity = world.lookup("gui");
 
-//    glBindBuffer(GL_ARRAY_BUFFER, 0);
-//    glBindVertexArray(0);
-    
     // Event loop
     double lastTime = glfwGetTime();
     int nbFrames = 0;
