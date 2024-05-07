@@ -180,11 +180,11 @@ flecs::entity processMesh(aiMesh *mesh, const aiScene *scene, Component::Model &
     
     // return a mesh object created from the extracted mesh data
     flecs::entity mesh_entity = world.entity()
-        .set([model, vertices, indices, textures](Component::Mesh& mesh, Component::Texture& texture, Component::Vertex& vertex, Component::ShaderComponent& shader){
+        .set([model, vertices, indices, textures](Component::Mesh& mesh, Component::Texture& texture, Component::Vertex& vertex, Component::ComponentShader& shader){
             mesh.vertices = vertices;
             mesh.indices = indices;
             mesh.textures = textures;
-            shader.shading = model.shader;
+            shader.shader = model.shader;
         });
     //Mesh_Systems(world);
     
@@ -211,9 +211,9 @@ void processNode(aiNode *node, const aiScene *scene, Component::Model &model, fl
 }
 
 void Model_Systems(flecs::world &ecs) {
-    ecs.system<Component::Model, Component::ShaderTransformations>("setupModel")
+    ecs.system<Component::Model, Component::Transformation>("setupModel")
         .kind(flecs::OnStart)
-        .each([&ecs](flecs::entity model, Component::Model& mc, Component::ShaderTransformations& st) {
+        .each([&ecs](flecs::entity model, Component::Model& mc, Component::Transformation& st) {
             Assimp::Importer importer;
             const aiScene *scene = importer.ReadFile(mc.path, aiProcess_Triangulate | aiProcess_FlipUVs);
             
@@ -227,9 +227,9 @@ void Model_Systems(flecs::world &ecs) {
             processNode(scene->mRootNode, scene, mc, ecs);
         });
     
-    ecs.system<Component::Model, Component::ShaderTransformations>("renderModelObject")
+    ecs.system<Component::Model, Component::Transformation>("renderModelObject")
         .kind(flecs::OnStore)
-        .each([&ecs](flecs::entity model, Component::Model& mc, Component::ShaderTransformations& st){
+        .each([&ecs](flecs::entity model, Component::Model& mc, Component::Transformation& st){
             flecs::entity camera_entity = ecs.lookup("camera");
             const Component::Camera* camera_component = camera_entity.get<Component::Camera>();
             

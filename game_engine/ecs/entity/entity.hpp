@@ -14,12 +14,14 @@
 #include <stdio.h>
 
 #include "../flecs.h"
-#include "model.hpp"
-#include "mesh.hpp"
+#include "render.hpp"
+#include "world.hpp"
+//#include "model.hpp"
+//#include "mesh.hpp"
 #include "window.hpp"
 #include "gui.hpp"
 #include "camera.hpp"
-#include "cube.hpp"
+//#include "cube.hpp"
 #include "../component/component.hpp"
 
 void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
@@ -41,9 +43,9 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
     world.entity("camera")
         .set([](Component::Camera& c){
             //camera
-            c.position = glm::vec3(0.0f, 1.5f, 5.0f);
+            c.position = glm::vec3(0.0f, 80.0f, 0.0);
             c.front = glm::vec3(0.0f, 0.0f, -1.0f);
-            c.up = glm::vec3(0.0f, 1.0f, 0.0f);
+            c.up = glm::vec3(0.0f, -1.0f, 0.0f);
             c.right = glm::vec3(0.0f, 0.0f, 0.0f);
             c.world_up = glm::vec3(0.0f, 1.0f, 0.0f);
             c.yaw = CAMERA_YAW;
@@ -70,26 +72,47 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
         });
     GUI_Systems(world);
     
-    for (int x = 0; x < 8; x++) {
-        for (int y = 0; y < 8; y++) {
-            for (int z = 0; z < 8; z++) {
-                world.entity()
-                    .set([x, y, z](Component::VertexCube& vc, Component::ComponentShader& shader, Component::Transformation& transform){
-                        //shader initialization
-                        shader.shader.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.fs");
-                        shader.light_shader = false;
+    //flecs renderer entity
+    world.entity("renderer")
+        .set([](Component::Renderer& r){
+            r.shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.fs");
+            
+            r.light_shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/light_cube.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/light_cube.fs");
+            r.light_pos = glm::vec3(10.0f, 100.0f, 20.0f);
+        });
+    Renderer(world);
+    
+    // flecs world entity
+    world.entity("world")
+        .set([](Component::World& world){
+            
+        });
+    World_Systems(world);
+}
 
-                        //object transformations
-                        transform.model = glm::mat4(1.0f);
-                        transform.translate = glm::vec3(static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
-                        transform.model = glm::translate(transform.model, transform.translate);
-                        transform.color = glm::vec3(1.0f, 0.5f, 0.31f);
-                        transform.light_color = glm::vec3(1.0f, 1.0f, 1.0f);
-                        transform.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
-                    });
-            }
-        }
-    }
+#endif /* entity_hpp */
+
+
+//    for (int x = 0; x < 8; x++) {
+//        for (int y = 0; y < 8; y++) {
+//            for (int z = 0; z < 8; z++) {
+//                world.entity()
+//                    .set([x, y, z](Component::VertexCube& vc, Component::ComponentShader& shader, Component::Transformation& transform){
+//                        //shader initialization
+//                        shader.shader.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/basic_lighting.fs");
+//                        shader.light_shader = false;
+//
+//                        //object transformations
+//                        transform.model = glm::mat4(1.0f);
+//                        transform.translate = glm::vec3(static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
+//                        transform.model = glm::translate(transform.model, transform.translate);
+//                        transform.color = glm::vec3(1.0f, 0.5f, 0.31f);
+//                        transform.light_color = glm::vec3(1.0f, 1.0f, 1.0f);
+//                        transform.light_pos = glm::vec3(1.2f, 1.0f, 2.0f);
+//                    });
+//            }
+//        }
+//    }
         
 //    world.entity("lightCubeObject")
 //        .set([](Component::VertexCube& vc, Component::ComponentShader& shader, Component::Transformation& transform){
@@ -106,13 +129,13 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
 //            transform.model = glm::scale(transform.model, transform.scale); // a smaller cube
 //        });
     
-    Cube_Systems(world);
+    //Cube_Systems(world);
     
 //    world.entity("modelObject")
 //        .set([](Component::Model& model, Component::ShaderTransformations& st){
 //            //shader initialization
 //            model.shader.setupShader("/Users/benkempers/Developer/game_engine/game_engine/shader/model_loading.vs", "/Users/benkempers/Developer/game_engine/game_engine/shader/model_loading.fs");
-//            
+//
 //            // model object path
 //            model.path = "/Users/benkempers/Developer/game_engine/game_engine/resources/backpack/backpack.obj";
 //            model.directory = model.path.substr(0, model.path.find_last_of('/'));
@@ -124,6 +147,3 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
 //        });
 //    Model_Systems(world);
 //    Mesh_Systems(world);
-}
-
-#endif /* entity_hpp */

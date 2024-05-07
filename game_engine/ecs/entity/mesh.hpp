@@ -18,9 +18,9 @@
 
 void Mesh_Systems(flecs::world& ecs)
 {
-    ecs.system<Component::Vertex, Component::Texture, Component::Mesh, Component::ShaderComponent>("setupMesh")
+    ecs.system<Component::Vertex, Component::Texture, Component::Mesh, Component::ComponentShader>("setupMesh")
         .kind(flecs::OnStart)
-        .each([&ecs](flecs::entity model, Component::Vertex &vertex, Component::Texture &tex, Component::Mesh &mesh, Component::ShaderComponent& shader) {
+        .each([&ecs](flecs::entity model, Component::Vertex &vertex, Component::Texture &tex, Component::Mesh &mesh, Component::ComponentShader& shader) {
             // create buffers/arrays
             glGenVertexArrays(1, &mesh.VAO);
             glGenBuffers(1, &mesh.VBO);
@@ -64,9 +64,9 @@ void Mesh_Systems(flecs::world& ecs)
 
         });
     
-    ecs.system<Component::Vertex, Component::Texture, Component::Mesh, Component::ShaderComponent>("renderMesh")
+    ecs.system<Component::Vertex, Component::Texture, Component::Mesh, Component::ComponentShader>("renderMesh")
         .kind(flecs::OnStore)
-        .each([&ecs](flecs::entity model,Component::Vertex &vertex, Component::Texture &tex, Component::Mesh &mesh, Component::ShaderComponent &shader){
+        .each([&ecs](flecs::entity model,Component::Vertex &vertex, Component::Texture &tex, Component::Mesh &mesh, Component::ComponentShader &shader){
             // bind appropriate textures
             unsigned int diffuseNr  = 1;
             unsigned int specularNr = 1;
@@ -88,7 +88,7 @@ void Mesh_Systems(flecs::world& ecs)
                     number = std::to_string(heightNr++); // transfer unsigned int to string
 
                 // now set the sampler to the correct texture unit
-                glUniform1i(glGetUniformLocation(shader.shading.ID, (name + number).c_str()), i);
+                glUniform1i(glGetUniformLocation(shader.shader.ID, (name + number).c_str()), i);
                 // and finally bind the texture
                 glBindTexture(GL_TEXTURE_2D, mesh.textures[i].id);
             }

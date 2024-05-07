@@ -90,18 +90,18 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
     
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
     stbi_set_flip_vertically_on_load(true);
     
     // build and compile our shader program
     glEnable(GL_DEPTH_TEST);
-    
-    //opengl face culling
+    //glDepthFunc(GL_LESS);
+    // enable face culling
 //    glEnable(GL_CULL_FACE);
-//    glCullFace(GL_BACK);
-    
+//    glFrontFace(GL_CW);
+        
     //setup flecs entity
     setup_flecs_entities(world, window);
     flecs::entity window_entity = world.lookup("main_window");
@@ -147,10 +147,10 @@ int main()
     }
     
     // de-allocate all resources once they've outlived their purpose:
-    flecs::query<Component::VertexCube, Component::ShaderComponent, Component::ShaderTransformations> deallocateQuery = world.query<Component::VertexCube, Component::ShaderComponent, Component::ShaderTransformations>();
-    deallocateQuery.each([](flecs::entity e, Component::VertexCube& vc, Component::ShaderComponent& sc, Component::ShaderTransformations& st) {
-        glDeleteVertexArrays(1, &vc.VAO);
-        glDeleteBuffers(1, &vc.VBO);
+    flecs::query<Component::Renderer> deallocateRenderer = world.query<Component::Renderer>();
+    deallocateRenderer.each([](flecs::entity e, Component::Renderer& render) {
+        glDeleteVertexArrays(1, &render.VAO);
+        glDeleteBuffers(1, &render.VBO);
     });
     
     flecs::query<Component::GUI> deallocateGUI = world.query<Component::GUI>();

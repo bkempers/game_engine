@@ -146,12 +146,12 @@ void GUI_Systems(flecs::world& ecs){
             ImGui::End();
         });
     
-    ecs.system<Component::GUI>("renderGUI")
-        .kind(flecs::OnStore)
-        .each([&ecs](flecs::entity gui, Component::GUI& g){
-            ImGui::Render();
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        });
+//    ecs.system<Component::GUI>("renderGUI")
+//        .kind(flecs::OnStore)
+//        .each([&ecs](flecs::entity gui, Component::GUI& g){
+//            ImGui::Render();
+//            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+//        });
 }
 
 #endif /* gui_hpp */
