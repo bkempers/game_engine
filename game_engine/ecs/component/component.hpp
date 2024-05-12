@@ -23,6 +23,7 @@
 
 #include <GLFW/glfw3.h>
 #include "../../shader/shader.hpp"
+#include "../../texture/texture.hpp"
 
 #define MAX_BONE_INFLUENCE 4
 
@@ -106,6 +107,7 @@ public:
     struct Renderer{
         unsigned int VBO;
         unsigned int VAO;
+        Texture texture = Texture();
         Shader shader = Shader();
         Shader light_shader = Shader();
         glm::vec3 light_pos;

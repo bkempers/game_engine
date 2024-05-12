@@ -20,6 +20,17 @@
 
 void chunkRenderer(flecs::world& ecs, Component::World& world, int xpos, int ypos){
     flecs::entity world_entity = ecs.lookup("world");
+//    flecs::entity camera_entity = ecs.lookup("camera");
+    
+//    const Component::Camera* camera_component = camera_entity.get<Component::Camera>();
+//    flecs::entity render_entity = ecs.lookup("renderer");
+//    render_entity.set([w](Component::Renderer& render) {
+//        //setup shaders
+//        render.shader.use();
+//        render.shader.setInt("texture1", 0);
+//        render.shader.setVec3("viewPos", camera_component->position);
+//    });
+    
     if (glfwGetTime() - world.lastChunkUpdate > 0.05)
     {
         world_entity.set([](Component::World& world) {
@@ -87,8 +98,6 @@ void World_Systems(flecs::world& ecs) {
             int ypos = camera_component->position.z / Chunk::CHUNK_SIZE;
             chunkRenderer(ecs, world, xpos, ypos);
             chunkClearer(ecs, world, xpos, ypos);
-            
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         });
 }
 

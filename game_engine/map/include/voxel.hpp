@@ -20,7 +20,7 @@
 #include "mesh.hpp"
 
 //canvas is a square
-const int CANVAS_SIZE = 16;
+const int CANVAS_SIZE = 0.5;
 const float CELL_SIZE = 1.0f/CANVAS_SIZE;
 
 // Voxel enums

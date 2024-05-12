@@ -75,10 +75,22 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
     //flecs renderer entity
     world.entity("renderer")
         .set([](Component::Renderer& r){
-            r.shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.fs");
+            //load textures
+            if (r.texture.load("/Users/benkempers/Developer/Projects/game_engine/game_engine/assets/atlas.png")) {
+                printf("Successfully loaded texture file.\n");
+            }
+            else {
+                printf("ERROR::Cannot load texture file.\n");
+            }
             
+            //load shaders
+            r.shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/basic_lighting.fs");
             r.light_shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/light_cube.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/light_cube.fs");
-            r.light_pos = glm::vec3(10.0f, 100.0f, 20.0f);
+//            r.shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/vertex.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/fragment.fs");
+//            r.light_shader.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/shadowVertex.vs", "/Users/benkempers/Developer/Projects/game_engine/game_engine/shader/shadowFragment.fs");
+//            r.light_shader.setupShadowMap();
+            
+            r.light_pos = glm::vec3(1.0f, 100.0f, 1.0f);
         });
     Renderer(world);
     

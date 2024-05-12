@@ -48,7 +48,7 @@ void GUI_Systems(flecs::world& ecs){
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            ImGui::SetNextWindowSize(ImVec2(700, 300));
+            ImGui::SetNextWindowSize(ImVec2(500, 250));
             bool detail_active = true;
             //flecs::query entity_query = ecs.query<>();
             if(ImGui::Begin("Entity Details", &detail_active, ImGuiWindowFlags_MenuBar)){

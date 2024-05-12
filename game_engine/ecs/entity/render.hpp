@@ -87,15 +87,65 @@ void Renderer(flecs::world& ecs) {
                 glBindVertexArray(0);
             });
 
-    ecs.system<Component::Renderer>("Render")
+    ecs.system<Component::Renderer>("preRender")
+        .kind(flecs::PreStore)
+        .each([&ecs](flecs::entity cube, Component::Renderer& render){
+            
+        });
+    
+    ecs.system<Component::Renderer>("render")
         .kind(flecs::OnStore)
         .each([&ecs](flecs::entity cube, Component::Renderer& render){
+            flecs::entity world_entity = ecs.lookup("world");
             flecs::entity camera_entity = ecs.lookup("camera");
             const Component::Camera* camera_component = camera_entity.get<Component::Camera>();
             
             //matrices
             glm::mat4 projection_matrix = glm::perspective(glm::radians(camera_component->zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 200.0f);
-            glm::mat4 view_matrix = glm::lookAt(camera_component->position, camera_component->position + camera_component->front, camera_component->up);
+            glm::mat4 view_matrix = glm::lookAt(camera_component->position, camera_component->position + camera_component->front, glm::vec3(0.0f, 1.0f, 0.0f));
+            
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  
+//            //light space matrix
+//            glm::vec3 lightInvDir = glm::vec3(0.5f, 1, 1);
+//            glm::vec3 lightPos = camera_component->position + (lightInvDir * glm::vec3(10));
+//            // Compute the MVP matrix from the light's point of view
+//            glm::mat4 depthProjectionMatrix = glm::ortho<float>(-50, 50, -50, 50, -10, 50);
+//            glm::mat4 depthViewMatrix = glm::lookAt(lightPos, camera_component->position, glm::vec3(0, 1, 0));
+//            glm::mat4 depthModelMatrix = glm::mat4(1.0);
+//            glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
+//
+//
+//            render.light_shader.use();
+//            render.light_shader.setMat4("lightSpaceMatrix", depthMVP);
+//            glViewport(0, 0, render.light_shader.shadowWidth, render.light_shader.shadowHeight);
+//            glBindFramebuffer(GL_FRAMEBUFFER, render.light_shader.depthMapFBO);
+//            glClear(GL_DEPTH_BUFFER_BIT);
+//
+//            // render to shadowmap
+//            const Component::World* world_component = world_entity.get<Component::World>();
+//            for(Chunk chunk : world_component->map){
+//                chunk.chunk_mesh.draw();
+//            }
+//
+//            render.shader.use();
+//            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//            glClear(GL_DEPTH_BUFFER_BIT);
+//            //glCullFace(GL_FRONT);
+//            glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+//            render.shader.setInt("shadowMap", 1);
+//            render.shader.setInt("texture1", 0);
+//            render.shader.setMat4("view", view_matrix);
+//            render.shader.setMat4("projection", projection_matrix);
+//            render.shader.setVec3("lightPos", lightPos);
+//            render.shader.setVec3("lightDir", -lightInvDir);
+//            render.shader.setMat4("lightSpaceMatrix", depthMVP);
+//
+//            //render to screen now
+//            world_component = world_entity.get<Component::World>();
+//            for(Chunk chunk : world_component->map){
+//                chunk.chunk_mesh.draw();
+//            }
             
             // render voxel light
             render.light_shader.use();
@@ -114,6 +164,7 @@ void Renderer(flecs::world& ecs) {
             
             // render voxel chunks
             render.shader.use();
+            //render.shader.setInt("texture1", 0);
             render.shader.setMat4("projection", projection_matrix);
             render.shader.setMat4("view", view_matrix);
             render.shader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
@@ -121,11 +172,11 @@ void Renderer(flecs::world& ecs) {
             render.shader.setVec3("lightPos", render.light_pos);
             render.shader.setVec3("viewPos", camera_component->position);
             
-            flecs::entity world_entity = ecs.lookup("world");
             const Component::World* world_component = world_entity.get<Component::World>();
             for(Chunk chunk : world_component->map){
 //                glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(chunk.position.x, 0, chunk.position.y));
 //                render.shader.setMat4("model", model);
+                render.shader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
                 chunk.chunk_mesh.draw();
             }
             

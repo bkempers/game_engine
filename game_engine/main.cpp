@@ -97,10 +97,9 @@ int main()
     
     // build and compile our shader program
     glEnable(GL_DEPTH_TEST);
-    //glDepthFunc(GL_LESS);
     // enable face culling
 //    glEnable(GL_CULL_FACE);
-//    glFrontFace(GL_CW);
+//    glCullFace(GL_BACK);
         
     //setup flecs entity
     setup_flecs_entities(world, window);

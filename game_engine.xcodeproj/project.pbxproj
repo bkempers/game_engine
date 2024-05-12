@@ -28,7 +28,6 @@
 		58BB6CA02BE84F610019D746 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6C9E2BE84F610019D746 /* chunk.cpp */; };
 		58BB6CA52BE850740019D746 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA32BE850740019D746 /* mesh.cpp */; };
 		58BB6CA82BE8510C0019D746 /* voxel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA62BE8510C0019D746 /* voxel.cpp */; };
-		58BB6CB02BE86C310019D746 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CAE2BE86C310019D746 /* texture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,11 +122,14 @@
 		58BB6CA72BE8510C0019D746 /* voxel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = voxel.hpp; sourceTree = "<group>"; };
 		58BB6CA92BE86AF60019D746 /* vertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex.vs; sourceTree = "<group>"; };
 		58BB6CAA2BE86B1B0019D746 /* fragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment.fs; sourceTree = "<group>"; };
-		58BB6CAE2BE86C310019D746 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		58BB6CAF2BE86C310019D746 /* texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		58BB6CB22BE87B2C0019D746 /* perlin_noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = perlin_noise.hpp; sourceTree = "<group>"; };
 		58BB6CB52BE9BEC70019D746 /* ge_light_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ge_light_test.png; sourceTree = "<group>"; };
 		58BB6CB62BE9BEC80019D746 /* perlin_noise_chunk_generation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perlin_noise_chunk_generation.png; sourceTree = "<group>"; };
+		58BB6CB72BE9BFD20019D746 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		58BB6CB82BE9C06A0019D746 /* shadowVertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowVertex.vs; sourceTree = "<group>"; };
+		58BB6CB92BE9C0780019D746 /* shadowFragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowFragment.fs; sourceTree = "<group>"; };
+		58BB6CBA2BE9C16A0019D746 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		58232BAC2B9725BE0030E891 = {
 			isa = PBXGroup;
 			children = (
+				58BB6CB72BE9BFD20019D746 /* README.md */,
 				58232BB72B9725BE0030E891 /* game_engine */,
 				58232BB62B9725BE0030E891 /* Products */,
 				58232BBF2B9726230030E891 /* Frameworks */,
@@ -166,7 +169,7 @@
 			children = (
 				58BB6CB42BE9BE9D0019D746 /* photos */,
 				58BB6C9D2BE84F520019D746 /* map */,
-				5829B7B52BD9B02D00229EC9 /* resources */,
+				5829B7B52BD9B02D00229EC9 /* assets */,
 				5829B7932BD5B71A00229EC9 /* gui */,
 				5829B74C2BC680FC00229EC9 /* ecs */,
 				5829B6FD2BA9FAEA00229EC9 /* camera */,
@@ -203,6 +206,8 @@
 				5829B7B42BD9AF5900229EC9 /* model_loading.fs */,
 				58BB6CA92BE86AF60019D746 /* vertex.vs */,
 				58BB6CAA2BE86B1B0019D746 /* fragment.fs */,
+				58BB6CB82BE9C06A0019D746 /* shadowVertex.vs */,
+				58BB6CB92BE9C0780019D746 /* shadowFragment.fs */,
 			);
 			path = shader;
 			sourceTree = "<group>";
@@ -214,7 +219,6 @@
 				5829B6F72BA5AE0500229EC9 /* stb_image.h */,
 				5829B6FB2BA9F40600229EC9 /* stb_image.cpp */,
 				5829B7042BAB327000229EC9 /* texture_instructions */,
-				58BB6CAE2BE86C310019D746 /* texture.cpp */,
 				58BB6CAF2BE86C310019D746 /* texture.hpp */,
 			);
 			path = texture;
@@ -280,12 +284,13 @@
 			path = gui;
 			sourceTree = "<group>";
 		};
-		5829B7B52BD9B02D00229EC9 /* resources */ = {
+		5829B7B52BD9B02D00229EC9 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				58BB6CBA2BE9C16A0019D746 /* atlas.png */,
 				5829B7C92BD9B0E300229EC9 /* backpack */,
 			);
-			path = resources;
+			path = assets;
 			sourceTree = "<group>";
 		};
 		5829B7C92BD9B0E300229EC9 /* backpack */ = {
@@ -437,7 +442,6 @@
 				5829B7AC2BD5B86000229EC9 /* imgui_impl_glfw.cpp in Sources */,
 				5829B74F2BC681CB00229EC9 /* flecs.c in Sources */,
 				5829B7A52BD5B78F00229EC9 /* imgui_tables.cpp in Sources */,
-				58BB6CB02BE86C310019D746 /* texture.cpp in Sources */,
 				5829B7A72BD5B78F00229EC9 /* imgui_demo.cpp in Sources */,
 				5829B6EB2B9E135A00229EC9 /* glad.c in Sources */,
 				58BB6CA02BE84F610019D746 /* chunk.cpp in Sources */,
