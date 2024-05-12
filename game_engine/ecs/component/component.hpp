@@ -145,27 +145,44 @@ public:
     
     static void ReadComponent(flecs::world& ecs, flecs::entity& entity, flecs::id& id)
     {
-//        if(id == ecs.id<Component::VertexCube>())
-//        {
-//            const VertexCube* component = entity.get<VertexCube>();
-//            ImGui::Text("VBO: %d", component->VBO);
-//            ImGui::Text("VAO: %d", component->VAO);
-//        }
-//        else if(id == ecs.id<Component::ShaderComponent>())
-//        {
-//            const ShaderComponent* component = entity.get<ShaderComponent>();
-//            ImGui::Text("Shader: ");
-//            
-//            ImGui::Indent();
-//            ImGui::Text("info??");
-//            ImGui::Unindent();
-//            
-//            ImGui::Text("Light Source: %s", component->light_source ? "true" : "false");
-//            ImGui::TextWrapped("Light Position: %s", glm::to_string(component->light_pos).c_str());
-//        }
-//        else if(id == ecs.id<Component::ShaderTransformations>())
-//        {
-//            const ShaderTransformations* component = entity.get<ShaderTransformations>();
+        //World entity ID
+        if(id == ecs.id<Component::World>())
+        {
+            const World* component = entity.get<World>();
+            if(ImGui::TreeNode("Chunk Map")){
+                int chunk_count = 0;
+                for(const Chunk& chunk : component->map){
+                    if(ImGui::TreeNode((void *)(intptr_t)chunk_count, "Chunk %d", chunk_count)){
+                        ImGui::Text("Position: %s", glm::to_string(chunk.position).c_str());
+                        
+                        ImGui::TreePop();
+                    }
+                    chunk_count++;
+                }
+                ImGui::TreePop();
+            }
+        }
+        //Camera entty ID
+        else if(id == ecs.id<Component::Camera>())
+        {
+            const Camera* component = entity.get<Camera>();
+            ImGui::TextWrapped("Position: %s", glm::to_string(component->position).c_str());
+            ImGui::TextWrapped("Front: %s", glm::to_string(component->front).c_str());
+            ImGui::TextWrapped("Up: %s", glm::to_string(component->up).c_str());
+            ImGui::TextWrapped("Right: %s", glm::to_string(component->right).c_str());
+            ImGui::TextWrapped("World Up: %s", glm::to_string(component->world_up).c_str());
+            ImGui::Text("Yaw: %f", component->yaw);
+            ImGui::Text("Pitch: %f", component->pitch);
+            ImGui::Text("Zoom: %f", component->zoom);
+            if(ImGui::TreeNode("Settings")){
+                ImGui::Text("Mouse Enable: %s", component->settings.mouse_enable ? "true" : "false");
+                ImGui::Text("Scroll Enable: %s", component->mouse.scroll_enable ? "true" : "false");
+                ImGui::Text("Movement Speed: %f", component->settings.movement_speed);
+                ImGui::Text("Mouse Sensitivity: %f", component->settings.mouse_sensitivity);
+                ImGui::TreePop();
+            }
+            
+            
 //            ImGui::TextWrapped("Model: %s", glm::to_string(component->model).c_str());
 //            ImGui::TextWrapped("Object Color: %s", glm::to_string(component->object_color).c_str());
 //            ImGui::TextWrapped("Light Color: %s", glm::to_string(component->light_color).c_str());
@@ -174,7 +191,7 @@ public:
 //            ImGui::Text("X-Axis Rotation: %f", component->rotation_x);
 //            ImGui::Text("Y-Axis Rotation: %f", component->rotation_y);
 //            ImGui::Text("Z-Axis Rotation: %f", component->rotation_z);
-//        }
+        }
     }
     
 private:

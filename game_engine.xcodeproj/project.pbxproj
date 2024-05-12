@@ -130,6 +130,7 @@
 		58BB6CB82BE9C06A0019D746 /* shadowVertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowVertex.vs; sourceTree = "<group>"; };
 		58BB6CB92BE9C0780019D746 /* shadowFragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowFragment.fs; sourceTree = "<group>"; };
 		58BB6CBA2BE9C16A0019D746 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
+		58BB6CBF2BF180610019D746 /* FastNoiseLite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FastNoiseLite.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				58BB6CB22BE87B2C0019D746 /* perlin_noise.hpp */,
+				58BB6CBF2BF180610019D746 /* FastNoiseLite.hpp */,
 				58BB6CA22BE850360019D746 /* include */,
 				58BB6CA12BE8502B0019D746 /* src */,
 			);

@@ -32,8 +32,7 @@ enum Voxel_Type {
     STONE,
     SNOW,
     WOOD,
-    SAND,
-    NUM_TYPES
+    SAND
 };
 
 enum Voxel_Face{

@@ -48,7 +48,7 @@ void GUI_Systems(flecs::world& ecs){
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            ImGui::SetNextWindowSize(ImVec2(500, 250));
+            ImGui::SetNextWindowSize(ImVec2(700, 350));
             bool detail_active = true;
             //flecs::query entity_query = ecs.query<>();
             if(ImGui::Begin("Entity Details", &detail_active, ImGuiWindowFlags_MenuBar)){
@@ -74,7 +74,7 @@ void GUI_Systems(flecs::world& ecs){
                      {
                          // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
                          char label[128];
-                         sprintf(label, "Entity: %s", name);
+                         sprintf(label, "%s", name);
                          if (ImGui::Selectable(label, g.selected_entity == name))
                              g.selected_entity = name;
                      }
@@ -95,12 +95,7 @@ void GUI_Systems(flecs::world& ecs){
                             if(cube_entity) {
                                 cube_entity.each([&](flecs::id id) {
                                     if(id.is_entity()){
-                                        if(ImGui::TreeNode(id.str().c_str())){
-                                        {
-                                            Component::ReadComponent(ecs, cube_entity, id);
-                                        }
-                                            ImGui::TreePop();
-                                        }
+                                        Component::ReadComponent(ecs, cube_entity, id);
                                     }
                                 });
                             }
@@ -109,31 +104,6 @@ void GUI_Systems(flecs::world& ecs){
                         
                         if (ImGui::BeginTabItem("Manipulate"))
                         {
-                            flecs::entity cube_entity = ecs.lookup(g.selected_entity);
-                            if(cube_entity) {
-                                static float color[3] = { 1.0f, 0.5f, 0.31f };
-                                ImGui::ColorEdit3("Entity Color", (float *)&color);
-                                cube_entity.set([](Component::Transformation& transform) {
-                                    transform.color = glm::vec3(color[0], color[1], color[2]);
-                                });
-                                
-                                float rotation_vec[4] = { 0.0f, 0.0f, 0.0f, 0.0f};
-                                ImGui::SliderFloat3("Rotation", rotation_vec, 0.0f, 360.0f);
-                                cube_entity.set([rotation_vec](Component::Transformation& transform) {
-                                    if (transform.rotation.x != rotation_vec[0]) {
-                                        transform.rotation.x = rotation_vec[0];
-                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-                                    }
-                                    if (transform.rotation.y != rotation_vec[1]) {
-                                        transform.rotation.y = rotation_vec[1];
-                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-                                    }
-                                    if (transform.rotation.z != rotation_vec[2]) {
-                                        transform.rotation.z = rotation_vec[2];
-                                        transform.model = glm::rotate(transform.model, glm::radians(transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-                                    }
-                                });
-                            }
                             ImGui::EndTabItem();
                         }
                         ImGui::EndTabBar();

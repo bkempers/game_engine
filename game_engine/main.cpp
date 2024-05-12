@@ -46,7 +46,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
     
     flecs::entity camera_entity = world.lookup("camera");
     camera_entity.set([xoff, yoff](Component::Camera& c) {
-        if(!c.mouse.scroll_enable){
+        if(c.mouse.scroll_enable){
             c.mouse.x_offset = xoff;
             c.mouse.y_offset = yoff;
         }
@@ -134,11 +134,11 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // flecs update
-        world.each([&gui_entity](flecs::entity e, Component::VertexCube& vc) {
-            gui_entity.set([e](Component::GUI& gui) {
-                gui.entity_names.insert(e.name().c_str());
-            });
+        gui_entity.set([](Component::GUI& gui) {
+            gui.entity_names.insert(world.lookup("world").name().c_str());
+            gui.entity_names.insert(world.lookup("camera").name().c_str());
         });
+        
         world.progress();
         
         glfwSwapBuffers(window);

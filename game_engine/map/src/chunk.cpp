@@ -32,7 +32,7 @@ Chunk::Chunk(glm::vec2 chunk_position){
 ////                delete[] chunk_voxels[i];
 ////            }
 ////                delete[] chunk_voxels;
-//};
+//}; 
     
 void Chunk::loadVoxels(){
     for (int x = 0; x < CHUNK_SIZE; x++) {
