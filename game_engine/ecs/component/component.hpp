@@ -22,8 +22,11 @@
 #include <glm/gtx/string_cast.hpp>
 
 #include <GLFW/glfw3.h>
-#include "../../shader/shader.hpp"
-#include "../../texture/texture.hpp"
+//#include "../../shader/shader.hpp"
+//#include "../../texture/texture.hpp"
+
+#include "../../map/include/world.hpp"
+#include "../../render/include/view.hpp"
 
 #define MAX_BONE_INFLUENCE 4
 
@@ -100,17 +103,12 @@ public:
     };
 
     struct World{
-        std::vector<Chunk> map;
-        double lastChunkUpdate = glfwGetTime();
+        int SEED = 1588047050;
+        World world_obj(1588047050);
     };
     
     struct Renderer{
-        unsigned int VBO;
-        unsigned int VAO;
-        Texture texture = Texture();
-        Shader shader = Shader();
-        Shader light_shader = Shader();
-        glm::vec3 light_pos;
+        View view;
     };
     
     struct VertexCube{
@@ -119,7 +117,7 @@ public:
     };
     
     struct ComponentShader{
-        Shader shader = Shader();
+        //Shader shader = Shader();
         bool light_shader;
     };
     

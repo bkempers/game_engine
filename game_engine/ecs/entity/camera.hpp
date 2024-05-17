@@ -8,7 +8,7 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <stdio.h>

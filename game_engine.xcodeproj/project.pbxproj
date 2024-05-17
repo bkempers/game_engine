@@ -22,12 +22,24 @@
 		5829B7AA2BD5B83400229EC9 /* imgui_impl_glfw.h in Sources */ = {isa = PBXBuildFile; fileRef = 5829B7A92BD5B80200229EC9 /* imgui_impl_glfw.h */; };
 		5829B7AC2BD5B86000229EC9 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */; };
 		584B1A0E2BE7F5A600F044FB /* libglfw.3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */; };
-		584B1A102BE7F60900F044FB /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */; };
-		584B1A112BE7F66F00F044FB /* libGLEW.2.2.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		584B1A122BE7F66F00F044FB /* libglfw.3.4.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		58BB6CA02BE84F610019D746 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6C9E2BE84F610019D746 /* chunk.cpp */; };
-		58BB6CA52BE850740019D746 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA32BE850740019D746 /* mesh.cpp */; };
 		58BB6CA82BE8510C0019D746 /* voxel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA62BE8510C0019D746 /* voxel.cpp */; };
+		58BB6CC62BF186560019D746 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CC42BF186560019D746 /* chunk.cpp */; };
+		58BB6CC92BF1870E0019D746 /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CC72BF1870E0019D746 /* octree.cpp */; };
+		58BB6CCE2BF190F30019D746 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CCC2BF190F30019D746 /* world.cpp */; };
+		58BB6CD42BF192260019D746 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CD22BF192260019D746 /* terrain.cpp */; };
+		58BB6CDB2BF196250019D746 /* view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CD92BF196250019D746 /* view.cpp */; };
+		58BB6CE22BF199590019D746 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CE02BF199590019D746 /* model.cpp */; };
+		58BB6CE52BF19D090019D746 /* billboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CE32BF19D090019D746 /* billboard.cpp */; };
+		58BB6CEE2BF440460019D746 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CEC2BF440460019D746 /* shader.cpp */; };
+		58FFF6792BF64C4200FD39D9 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FFF6782BF64C4200FD39D9 /* libGLEW.2.1.0.dylib */; };
+		58FFF67B2BF64D4600FD39D9 /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FFF67A2BF64D4600FD39D9 /* libboost_serialization.a */; };
+		58FFF67D2BF64D6800FD39D9 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FFF67C2BF64D6800FD39D9 /* libboost_filesystem.a */; };
+		58FFF67E2BF7245300FD39D9 /* color.h in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CCB2BF18F950019D746 /* color.h */; };
+		58FFF67F2BF7245300FD39D9 /* ease.h in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CD52BF193080019D746 /* ease.h */; };
+		58FFF6842BF7E6C000FD39D9 /* picker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58FFF6822BF7E6C000FD39D9 /* picker.cpp */; };
+		58FFF6872BF7E7D900FD39D9 /* plant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58FFF6852BF7E7D900FD39D9 /* plant.cpp */; };
+		58FFF68B2BF7E7E500FD39D9 /* drop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58FFF6892BF7E7E500FD39D9 /* drop.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +59,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				584B1A122BE7F66F00F044FB /* libglfw.3.4.dylib in Embed Libraries */,
-				584B1A112BE7F66F00F044FB /* libGLEW.2.2.0.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,8 +108,6 @@
 		5829B7A22BD5B78F00229EC9 /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
 		5829B7A92BD5B80200229EC9 /* imgui_impl_glfw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_glfw.h; sourceTree = "<group>"; };
 		5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_glfw.cpp; sourceTree = "<group>"; };
-		5829B7AE2BD854E500229EC9 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
-		5829B7B12BD9A2FC00229EC9 /* mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mesh.hpp; sourceTree = "<group>"; };
 		5829B7B32BD9AF3400229EC9 /* model_loading.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = model_loading.vs; sourceTree = "<group>"; };
 		5829B7B42BD9AF5900229EC9 /* model_loading.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = model_loading.fs; sourceTree = "<group>"; };
 		5829B7CA2BD9B0FC00229EC9 /* diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = diffuse.jpg; sourceTree = "<group>"; };
@@ -112,12 +121,7 @@
 		584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../usr/local/Cellar/glfw/3.4/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
 		584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		589C5CEA2BE7ED7F009E2A2C /* render.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = render.hpp; sourceTree = "<group>"; };
-		58A4C3922BE1C9A2001C8EB8 /* obb_picking.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = obb_picking.hpp; sourceTree = "<group>"; };
 		58BB6C9B2BE802600019D746 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
-		58BB6C9E2BE84F610019D746 /* chunk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chunk.cpp; sourceTree = "<group>"; };
-		58BB6C9F2BE84F610019D746 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
-		58BB6CA32BE850740019D746 /* mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
-		58BB6CA42BE850740019D746 /* mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mesh.hpp; sourceTree = "<group>"; };
 		58BB6CA62BE8510C0019D746 /* voxel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = voxel.cpp; sourceTree = "<group>"; };
 		58BB6CA72BE8510C0019D746 /* voxel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = voxel.hpp; sourceTree = "<group>"; };
 		58BB6CA92BE86AF60019D746 /* vertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex.vs; sourceTree = "<group>"; };
@@ -131,6 +135,41 @@
 		58BB6CB92BE9C0780019D746 /* shadowFragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowFragment.fs; sourceTree = "<group>"; };
 		58BB6CBA2BE9C16A0019D746 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		58BB6CBF2BF180610019D746 /* FastNoiseLite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FastNoiseLite.hpp; sourceTree = "<group>"; };
+		58BB6CC42BF186560019D746 /* chunk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chunk.cpp; sourceTree = "<group>"; };
+		58BB6CC52BF186560019D746 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
+		58BB6CC72BF1870E0019D746 /* octree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = octree.cpp; sourceTree = "<group>"; };
+		58BB6CC82BF1870E0019D746 /* octree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = octree.hpp; sourceTree = "<group>"; };
+		58BB6CCB2BF18F950019D746 /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
+		58BB6CCC2BF190F30019D746 /* world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world.cpp; sourceTree = "<group>"; };
+		58BB6CCD2BF190F30019D746 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
+		58BB6CD22BF192260019D746 /* terrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
+		58BB6CD32BF192260019D746 /* terrain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = terrain.hpp; sourceTree = "<group>"; };
+		58BB6CD52BF193080019D746 /* ease.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ease.h; sourceTree = "<group>"; };
+		58BB6CD92BF196250019D746 /* view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = view.cpp; sourceTree = "<group>"; };
+		58BB6CDA2BF196250019D746 /* view.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = view.hpp; sourceTree = "<group>"; };
+		58BB6CDE2BF197340019D746 /* colorPick.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colorPick.vs; sourceTree = "<group>"; };
+		58BB6CDF2BF197580019D746 /* colorPick.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colorPick.fs; sourceTree = "<group>"; };
+		58BB6CE02BF199590019D746 /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
+		58BB6CE12BF199590019D746 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
+		58BB6CE32BF19D090019D746 /* billboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = billboard.cpp; sourceTree = "<group>"; };
+		58BB6CE42BF19D090019D746 /* billboard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = billboard.hpp; sourceTree = "<group>"; };
+		58BB6CEB2BF1BADE0019D746 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		58BB6CEC2BF440460019D746 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		58BB6CED2BF440460019D746 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		58FFF6642BF4688700FD39D9 /* libnoise2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libnoise2; sourceTree = "<group>"; };
+		58FFF6682BF5B50700FD39D9 /* glew */ = {isa = PBXFileReference; lastKnownFileType = folder; name = glew; path = ../../../../../usr/local/Cellar/glew; sourceTree = "<group>"; };
+		58FFF66A2BF5B51900FD39D9 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib; sourceTree = "<group>"; };
+		58FFF66C2BF5B52D00FD39D9 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.dylib; sourceTree = "<group>"; };
+		58FFF6722BF649F900FD39D9 /* libGLEW.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.dylib; path = ../../../../../usr/local/lib/libGLEW.2.2.dylib; sourceTree = "<group>"; };
+		58FFF6782BF64C4200FD39D9 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
+		58FFF67A2BF64D4600FD39D9 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_serialization.a; path = ../../../../../usr/local/Cellar/boost/1.85.0/lib/libboost_serialization.a; sourceTree = "<group>"; };
+		58FFF67C2BF64D6800FD39D9 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../../../../../usr/local/Cellar/boost/1.85.0/lib/libboost_filesystem.a; sourceTree = "<group>"; };
+		58FFF6822BF7E6C000FD39D9 /* picker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picker.cpp; sourceTree = "<group>"; };
+		58FFF6832BF7E6C000FD39D9 /* picker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = picker.hpp; sourceTree = "<group>"; };
+		58FFF6852BF7E7D900FD39D9 /* plant.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plant.cpp; sourceTree = "<group>"; };
+		58FFF6862BF7E7D900FD39D9 /* plant.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plant.hpp; sourceTree = "<group>"; };
+		58FFF6892BF7E7E500FD39D9 /* drop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = drop.cpp; sourceTree = "<group>"; };
+		58FFF68A2BF7E7E500FD39D9 /* drop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = drop.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +177,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58FFF67D2BF64D6800FD39D9 /* libboost_filesystem.a in Frameworks */,
+				58FFF67B2BF64D4600FD39D9 /* libboost_serialization.a in Frameworks */,
+				58FFF6792BF64C4200FD39D9 /* libGLEW.2.1.0.dylib in Frameworks */,
 				584B1A0E2BE7F5A600F044FB /* libglfw.3.4.dylib in Frameworks */,
-				584B1A102BE7F60900F044FB /* libGLEW.2.2.0.dylib in Frameworks */,
 				58232BCE2B972B870030E891 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,7 +209,10 @@
 		58232BB72B9725BE0030E891 /* game_engine */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF6632BF4685A00FD39D9 /* deps */,
+				58BB6CCA2BF18F800019D746 /* helpers */,
 				58BB6CB42BE9BE9D0019D746 /* photos */,
+				58BB6CD82BF1960D0019D746 /* render */,
 				58BB6C9D2BE84F520019D746 /* map */,
 				5829B7B52BD9B02D00229EC9 /* assets */,
 				5829B7932BD5B71A00229EC9 /* gui */,
@@ -179,6 +223,7 @@
 				5829B6EA2B9E135A00229EC9 /* glad.c */,
 				58232BD22B972C1B0030E891 /* game_engine.entitlements */,
 				58232BB82B9725BE0030E891 /* main.cpp */,
+				58BB6CEB2BF1BADE0019D746 /* main.h */,
 			);
 			path = game_engine;
 			sourceTree = "<group>";
@@ -186,6 +231,13 @@
 		58232BBF2B9726230030E891 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF67C2BF64D6800FD39D9 /* libboost_filesystem.a */,
+				58FFF67A2BF64D4600FD39D9 /* libboost_serialization.a */,
+				58FFF6782BF64C4200FD39D9 /* libGLEW.2.1.0.dylib */,
+				58FFF6722BF649F900FD39D9 /* libGLEW.2.2.dylib */,
+				58FFF66C2BF5B52D00FD39D9 /* libGLEW.dylib */,
+				58FFF66A2BF5B51900FD39D9 /* lib */,
+				58FFF6682BF5B50700FD39D9 /* glew */,
 				584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */,
 				584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */,
 				58232BC02B9726230030E891 /* OpenGL.framework */,
@@ -253,9 +305,6 @@
 				5829B7702BD1320800229EC9 /* cube.hpp */,
 				5829B7762BD200E200229EC9 /* entity.hpp */,
 				5829B7792BD2011300229EC9 /* gui.hpp */,
-				5829B7AE2BD854E500229EC9 /* model.hpp */,
-				5829B7B12BD9A2FC00229EC9 /* mesh.hpp */,
-				58A4C3922BE1C9A2001C8EB8 /* obb_picking.hpp */,
 				589C5CEA2BE7ED7F009E2A2C /* render.hpp */,
 				58BB6C9B2BE802600019D746 /* world.hpp */,
 			);
@@ -347,9 +396,13 @@
 		58BB6CA12BE8502B0019D746 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF6892BF7E7E500FD39D9 /* drop.cpp */,
+				58FFF6852BF7E7D900FD39D9 /* plant.cpp */,
+				58BB6CD22BF192260019D746 /* terrain.cpp */,
+				58BB6CCC2BF190F30019D746 /* world.cpp */,
+				58BB6CC72BF1870E0019D746 /* octree.cpp */,
+				58BB6CC42BF186560019D746 /* chunk.cpp */,
 				58BB6CA62BE8510C0019D746 /* voxel.cpp */,
-				58BB6C9E2BE84F610019D746 /* chunk.cpp */,
-				58BB6CA32BE850740019D746 /* mesh.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -357,9 +410,13 @@
 		58BB6CA22BE850360019D746 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF68A2BF7E7E500FD39D9 /* drop.hpp */,
+				58FFF6862BF7E7D900FD39D9 /* plant.hpp */,
+				58BB6CD32BF192260019D746 /* terrain.hpp */,
+				58BB6CCD2BF190F30019D746 /* world.hpp */,
+				58BB6CC82BF1870E0019D746 /* octree.hpp */,
+				58BB6CC52BF186560019D746 /* chunk.hpp */,
 				58BB6CA72BE8510C0019D746 /* voxel.hpp */,
-				58BB6CA42BE850740019D746 /* mesh.hpp */,
-				58BB6C9F2BE84F610019D746 /* chunk.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -371,6 +428,74 @@
 				58BB6CB62BE9BEC80019D746 /* perlin_noise_chunk_generation.png */,
 			);
 			path = photos;
+			sourceTree = "<group>";
+		};
+		58BB6CCA2BF18F800019D746 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				58BB6CCB2BF18F950019D746 /* color.h */,
+				58BB6CD52BF193080019D746 /* ease.h */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		58BB6CD82BF1960D0019D746 /* render */ = {
+			isa = PBXGroup;
+			children = (
+				58BB6CDC2BF196CF0019D746 /* shaders */,
+				58BB6CEA2BF1B4990019D746 /* include */,
+				58BB6CE92BF1B4940019D746 /* src */,
+			);
+			path = render;
+			sourceTree = "<group>";
+		};
+		58BB6CDC2BF196CF0019D746 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				58BB6CDD2BF197240019D746 /* pick */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		58BB6CDD2BF197240019D746 /* pick */ = {
+			isa = PBXGroup;
+			children = (
+				58BB6CDE2BF197340019D746 /* colorPick.vs */,
+				58BB6CDF2BF197580019D746 /* colorPick.fs */,
+			);
+			path = pick;
+			sourceTree = "<group>";
+		};
+		58BB6CE92BF1B4940019D746 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF6822BF7E6C000FD39D9 /* picker.cpp */,
+				58BB6CEC2BF440460019D746 /* shader.cpp */,
+				58BB6CD92BF196250019D746 /* view.cpp */,
+				58BB6CE02BF199590019D746 /* model.cpp */,
+				58BB6CE32BF19D090019D746 /* billboard.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		58BB6CEA2BF1B4990019D746 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF6832BF7E6C000FD39D9 /* picker.hpp */,
+				58BB6CED2BF440460019D746 /* shader.hpp */,
+				58BB6CDA2BF196250019D746 /* view.hpp */,
+				58BB6CE12BF199590019D746 /* model.hpp */,
+				58BB6CE42BF19D090019D746 /* billboard.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		58FFF6632BF4685A00FD39D9 /* deps */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF6642BF4688700FD39D9 /* libnoise2 */,
+			);
+			path = deps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,22 +556,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58FFF67E2BF7245300FD39D9 /* color.h in Sources */,
+				58FFF67F2BF7245300FD39D9 /* ease.h in Sources */,
+				58FFF68B2BF7E7E500FD39D9 /* drop.cpp in Sources */,
 				5829B7AA2BD5B83400229EC9 /* imgui_impl_glfw.h in Sources */,
+				58BB6CC92BF1870E0019D746 /* octree.cpp in Sources */,
 				5829B6FA2BA9F37300229EC9 /* stb_image.h in Sources */,
+				58FFF6842BF7E6C000FD39D9 /* picker.cpp in Sources */,
 				5829B7A32BD5B78F00229EC9 /* imgui_widgets.cpp in Sources */,
+				58BB6CEE2BF440460019D746 /* shader.cpp in Sources */,
 				5829B6FC2BA9F40600229EC9 /* stb_image.cpp in Sources */,
 				5829B7A62BD5B78F00229EC9 /* imgui_draw.cpp in Sources */,
 				5829B7A42BD5B78F00229EC9 /* imgui_impl_opengl3.cpp in Sources */,
 				5829B7A82BD5B78F00229EC9 /* imgui.cpp in Sources */,
 				58232BB92B9725BE0030E891 /* main.cpp in Sources */,
 				58BB6CA82BE8510C0019D746 /* voxel.cpp in Sources */,
-				58BB6CA52BE850740019D746 /* mesh.cpp in Sources */,
+				58BB6CDB2BF196250019D746 /* view.cpp in Sources */,
 				5829B7AC2BD5B86000229EC9 /* imgui_impl_glfw.cpp in Sources */,
 				5829B74F2BC681CB00229EC9 /* flecs.c in Sources */,
 				5829B7A52BD5B78F00229EC9 /* imgui_tables.cpp in Sources */,
+				58BB6CC62BF186560019D746 /* chunk.cpp in Sources */,
+				58BB6CCE2BF190F30019D746 /* world.cpp in Sources */,
+				58BB6CE52BF19D090019D746 /* billboard.cpp in Sources */,
+				58FFF6872BF7E7D900FD39D9 /* plant.cpp in Sources */,
+				58BB6CE22BF199590019D746 /* model.cpp in Sources */,
 				5829B7A72BD5B78F00229EC9 /* imgui_demo.cpp in Sources */,
+				58BB6CD42BF192260019D746 /* terrain.cpp in Sources */,
 				5829B6EB2B9E135A00229EC9 /* glad.c in Sources */,
-				58BB6CA02BE84F610019D746 /* chunk.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +710,11 @@
 				CODE_SIGN_ENTITLEMENTS = game_engine/game_engine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_TESTABILITY = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/usr/loca/Cellar/**",
+					"/usr/local/lib/**",
+				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -586,10 +727,16 @@
 					"/usr/local/Cellar/**",
 					/usr/local/Cellar/assimp/5.4.0/lib,
 					/usr/local/Cellar/glfw/3.4/lib,
+					"/usr/local/Cellar/glew/**",
 					/usr/local/Cellar/glew/2.2.0_1/lib,
+					/usr/local/Cellar/boost/1.85.0/lib,
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				OTHER_LDFLAGS = "-ld_classic";
+				OTHER_LDFLAGS = (
+					"-ld_classic",
+					"-ld64",
+					"-Wl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -600,6 +747,10 @@
 				CODE_SIGN_ENTITLEMENTS = game_engine/game_engine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/usr/loca/Cellar/**",
+					"/usr/local/lib/**",
+				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -612,10 +763,16 @@
 					"/usr/local/Cellar/**",
 					/usr/local/Cellar/assimp/5.4.0/lib,
 					/usr/local/Cellar/glfw/3.4/lib,
+					"/usr/local/Cellar/glew/**",
 					/usr/local/Cellar/glew/2.2.0_1/lib,
+					/usr/local/Cellar/boost/1.85.0/lib,
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				OTHER_LDFLAGS = "-ld_classic";
+				OTHER_LDFLAGS = (
+					"-ld_classic",
+					"-ld64",
+					"-Wl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

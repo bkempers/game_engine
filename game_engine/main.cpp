@@ -5,25 +5,7 @@
 //  Created by Ben Kempers on 3/5/24.
 //
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include "shader/shader.hpp"
-#include "texture/stb_image.h"
-
-#include "gui/imgui/imgui.h"
-#include "ecs/flecs.h"
-#include "ecs/entity/entity.hpp"
-#include "ecs/component/component.hpp"
-
-#include <stdlib.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <iostream>
+#include "main.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -79,12 +61,21 @@ int main()
         return 1;
     }
     
-    // glad: load all OpenGL function pointers
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
+    // If using GLEW version 1.13 or earlier
+    glewExperimental=true;
+    GLenum err=glewInit();
+    if(err!=GLEW_OK) {
+      // Problem: glewInit failed, something is seriously wrong.
+      printf("glewInit failed: %s", glewGetErrorString(err));
+      exit(1);
     }
+    
+//    // glad: load all OpenGL function pointers
+//    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+//    {
+//        std::cout << "Failed to initialize GLAD" << std::endl;
+//        return -1;
+//    }
     
     // Set action callbacks
     glfwSetScrollCallback(window, scroll_callback);
@@ -148,8 +139,8 @@ int main()
     // de-allocate all resources once they've outlived their purpose:
     flecs::query<Component::Renderer> deallocateRenderer = world.query<Component::Renderer>();
     deallocateRenderer.each([](flecs::entity e, Component::Renderer& render) {
-        glDeleteVertexArrays(1, &render.VAO);
-        glDeleteBuffers(1, &render.VBO);
+//        glDeleteVertexArrays(1, &render.VAO);
+//        glDeleteBuffers(1, &render.VBO);
     });
     
     flecs::query<Component::GUI> deallocateGUI = world.query<Component::GUI>();

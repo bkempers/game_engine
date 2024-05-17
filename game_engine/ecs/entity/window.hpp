@@ -8,14 +8,13 @@
 #ifndef window_hpp
 #define window_hpp
 
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include "glm/ext.hpp"
 
 #include <math.h>
 #include <stdio.h>
-#include "obb_picking.hpp"
 #include "../component/component.hpp"
 #include "../flecs.h"
 

@@ -7,25 +7,6 @@
 
 #include "voxel.hpp"
 
-glm::vec3 unitVertices[8] = {
-        glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f),
-        glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
-        glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.0f, 1.0f),
-        glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 1.0f, 1.0f)
-};
-
-// Define the vertex indices for each face (two triangles per face)
-unsigned int faceVertices[6][4] = {
-    {3, 2, 6, 7},
-    {1, 0, 4, 5},
-    {4, 0, 3, 7},
-    {1, 5, 6, 2},
-    // FRONT (0, 1, 2, 3)
-    {0, 1, 2, 3},
-    // BACK (5, 4, 7, 6)
-    {5, 4, 7, 6}
-};
-
 Voxel::Voxel(){
     
 };
@@ -38,84 +19,69 @@ Voxel::~Voxel(){
     
 };
 
-std::unordered_map<uint8_t, Voxel::VoxelTexture> Voxel::voxelTextures;
-void Voxel::Initialization(){
-    voxelTextures[GRASS] = { getTexCoords(0), getTexCoords(3), getTexCoords(2) }; // Grass
-    voxelTextures[DIRT] = { getTexCoords(2), getTexCoords(2), getTexCoords(2) }; // Dirt
-    voxelTextures[STONE] = { getTexCoords(1), getTexCoords(1), getTexCoords(1) }; // Stone
-    voxelTextures[SNOW] = { getTexCoords(66), getTexCoords(66), getTexCoords(66) }; //Snow Block
+//Setting Getters
+bool Voxel::isVisible(Voxel_Type type){
+  return (type != VOXEL_AIR && type != VOXEL_VOID);
 }
 
-glm::vec2 Voxel::getTexCoords(uint8_t pos) {
-    int x = pos % CANVAS_SIZE;
-    int y = pos / CANVAS_SIZE;
-    return glm::vec2(x * CELL_SIZE, y * CELL_SIZE);
+bool Voxel::isSpawnable(Voxel_Type type){
+  return (type == VOXEL_GRASS || type == VOXEL_SAND);
 }
 
-void Voxel::loadFace(glm::vec3 position, Voxel_Face face, std::vector<Mesh::Vertex>& vertices, std::vector<unsigned int>& indices){
-    if (type == DEFAULT) // Air block check
-        return;
-    
-    glm::vec2 offset = glm::vec2(0.0f);
-    if (face == TOP) {
-        offset = voxelTextures[type].topTexture;
-    }
-    else if (face == BOTTOM) {
-        offset = voxelTextures[type].bottomTexture;
-    }
-    else {
-        offset = voxelTextures[type].sideTexture;
-    }
+//Is the Blocks Model a Cube?
+bool Voxel::isCubic(Voxel_Type type){
+  return type != VOXEL_CACTUSFLOWER;
+}
 
-    glm::vec2 uvCoordinates[4] = {
-        offset + glm::vec2(0.0f, CELL_SIZE),         // Bottom Left
-        offset + glm::vec2(CELL_SIZE, CELL_SIZE),   // Bottom Right
-        offset + glm::vec2(CELL_SIZE, 0.0f),         // Top Right
-        offset + glm::vec2(0.0f, 0.0f)              // Top Left
-    };
-
-    unsigned int indexOffset = vertices.size();
-    // Append vertices for the specified face
-    for (int i = 0; i < 4; i++) {
-        unsigned int vIndex = faceVertices[faceToIndex(face)][i];
-        Mesh::Vertex v;
-        v.position = unitVertices[vIndex] + position;
-        v.normal = vectorMapping(face);
-        v.tex_coords = uvCoordinates[i];
-        vertices.push_back(v);
+glm::vec4 Voxel::getColor(Voxel_Type _type, double t){
+    Color color;
+    //Switch the value and return a vector
+    switch(_type){
+        case VOXEL_GRASS:
+            return color.bezier(t, color.grasscolors);
+            break;
+        case VOXEL_DIRT:
+            return glm::vec4(0.74f, 0.5f, 0.36f, 1.0f);
+            break;
+        case VOXEL_WATER:
+            return glm::vec4(0.3f, 0.57f, 0.67f, 0.8f); //Semi Transparent!
+            break;
+        case VOXEL_SAND:
+            return color.bezier(t, color.sandcolors);
+            break;
+        case VOXEL_CLAY:
+            return color.bezier(t, color.claycolors);
+            break;
+        case VOXEL_STONE:
+            return color.bezier(t, color.stonecolors);
+            break;
+        case VOXEL_LEAVES:
+            return color.bezier(t, color.leafcolors);
+            break;
+        case VOXEL_WOOD:
+            return glm::vec4(0.6f, 0.375f, 0.14f, 1.0f);
+            break;
+        case VOXEL_GRAVEL:
+            return color.bezier(t, color.gravelcolors);
+            break;
+        case VOXEL_SANDSTONE:
+            return glm::vec4(0.8f, 0.75f, 0.64f, 1.0f);
+            break;
+        case VOXEL_PUMPKIN:
+            return glm::vec4(1.0f, 0.5f, 0.0f, 1.0f);
+            break;
+        case VOXEL_CACTUS:
+            return glm::vec4(0.0f, 0.44f, 0.3f, 1.0f);
+            break;
+        case VOXEL_PLANKS:
+            return glm::vec4(0.75f, 0.6f, 0.28f, 1.0f);
+            break;
+//        case VOXEL_GLASS:
+//            return glm::vec4(0.8f, 0.9f, 0.95f, 0.2f);
+//            break;
+        default:
+            return glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
+            break;
     }
-
-    // Append indices for the specified face (two triangles)
-    indices.push_back(indexOffset);
-    indices.push_back(indexOffset + 1);
-    indices.push_back(indexOffset + 2);
-    indices.push_back(indexOffset);
-    indices.push_back(indexOffset + 2);
-    indices.push_back(indexOffset + 3);
-};
-
-glm::vec3 Voxel::vectorMapping(Voxel_Face face){
-    switch(face){
-        case TOP: return glm::vec3(0, 1, 0);
-        case BOTTOM: return glm::vec3(0, -1, 0);
-        case LEFT_FACE: return glm::vec3(-1, 0, 0);
-        case RIGHT_FACE: return glm::vec3(1, 0, 0);
-        case FRONT: return glm::vec3(0, 0, -1);
-        case BACK: return glm::vec3(0, 0, 1);
-            
-        default: return glm::vec3(0, 0, 0); // Or some error code
-    }
-};
-
-int Voxel::faceToIndex(Voxel_Face face) {
-    switch (face) {
-        case TOP: return 0;
-        case BOTTOM: return 1;
-        case LEFT_FACE: return 2;
-        case RIGHT_FACE: return 3;
-        case FRONT: return 4;
-        case BACK: return 5;
-        default: return -1; // Or some error code
-    }
-};
+}
 

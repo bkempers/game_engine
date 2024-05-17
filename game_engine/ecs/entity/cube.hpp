@@ -8,7 +8,7 @@
 #ifndef CUBE_HPP
 #define CUBE_HPP
 
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <string>
