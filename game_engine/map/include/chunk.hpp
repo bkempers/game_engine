@@ -23,8 +23,8 @@
 class Chunk{
 public:
     static constexpr int CHUNK_SIZE = 16;
-    static constexpr int CHUNK_HEIGHT = 64;
-    static constexpr int CHUNK_RENDER_RADIUS = 10;
+    static constexpr int CHUNK_HEIGHT = 32;
+    static constexpr int CHUNK_RENDER_RADIUS = 8;
     static constexpr int SEED = 123456u;
 
     //generation

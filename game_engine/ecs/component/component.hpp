@@ -16,20 +16,16 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "../../map/include/chunk.hpp"
+#include "map/include/chunk.hpp"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
+#include "dependencies/imgui/imgui.h"
+#include "dependencies/imgui/imgui_impl_glfw.h"
+#include "dependencies/imgui/imgui_impl_opengl3.h"
+
 #include <GLFW/glfw3.h>
-#include "../../shader/shader.hpp"
-#include "../../texture/texture.hpp"
-
-#define MAX_BONE_INFLUENCE 4
-
-// settings
-unsigned int SCR_WIDTH = 1450;
-unsigned int SCR_HEIGHT = 775;
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
 enum Camera_Movement {
@@ -45,6 +41,10 @@ enum Camera_Movement {
 class Component
 {
 public:
+    // settings
+    unsigned int SCR_WIDTH = 1450;
+    unsigned int SCR_HEIGHT = 800;
+    
     struct Window{
         GLFWwindow* window;
         int src_width;
@@ -103,46 +103,7 @@ public:
         std::vector<Chunk> map;
         double lastChunkUpdate = glfwGetTime();
     };
-    
-    struct Renderer{
-        unsigned int VBO;
-        unsigned int VAO;
-        Texture texture = Texture();
-        Shader shader = Shader();
-        Shader light_shader = Shader();
-        glm::vec3 light_pos;
-    };
-    
-    struct VertexCube{
-        unsigned int VBO;
-        unsigned int VAO;
-    };
-    
-    struct ComponentShader{
-        Shader shader = Shader();
-        bool light_shader;
-    };
-    
-    struct Transformation{
-        glm::mat4 model;
-        glm::vec3 color;
-        glm::vec3 light_color;
-        glm::vec3 light_pos;
-        glm::vec3 translate;
-        glm::vec3 scale;
-        glm::vec3 rotation;
-    };
-    
-    // MODEL FLECS STRUCT
-//    struct Model {
-//        std::vector<Texture> textures_loaded;    // stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
-//        std::vector<flecs::entity> meshes; //vector of mesh entities
-//        std::string directory;
-//        std::string path;
-//        bool gammaCorrection;
-//        Shader shader = Shader();
-//    };
-    
+
     static void ReadComponent(flecs::world& ecs, flecs::entity& entity, flecs::id& id)
     {
         //World entity ID

@@ -22,12 +22,13 @@
 		5829B7AA2BD5B83400229EC9 /* imgui_impl_glfw.h in Sources */ = {isa = PBXBuildFile; fileRef = 5829B7A92BD5B80200229EC9 /* imgui_impl_glfw.h */; };
 		5829B7AC2BD5B86000229EC9 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */; };
 		584B1A0E2BE7F5A600F044FB /* libglfw.3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */; };
-		584B1A102BE7F60900F044FB /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */; };
-		584B1A112BE7F66F00F044FB /* libGLEW.2.2.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		584B1A122BE7F66F00F044FB /* libglfw.3.4.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		58BB6CA02BE84F610019D746 /* chunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6C9E2BE84F610019D746 /* chunk.cpp */; };
 		58BB6CA52BE850740019D746 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA32BE850740019D746 /* mesh.cpp */; };
 		58BB6CA82BE8510C0019D746 /* voxel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58BB6CA62BE8510C0019D746 /* voxel.cpp */; };
+		58FFF68F2BF8098B00FD39D9 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FFF68E2BF8098B00FD39D9 /* libGLEW.2.1.0.dylib */; };
+		58FFF6982BF80D1B00FD39D9 /* picker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58FFF6962BF80D1B00FD39D9 /* picker.cpp */; };
+		58FFF69D2BF97B2000FD39D9 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58FFF69B2BF97B2000FD39D9 /* renderer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +48,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				584B1A122BE7F66F00F044FB /* libglfw.3.4.dylib in Embed Libraries */,
-				584B1A112BE7F66F00F044FB /* libGLEW.2.2.0.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +63,6 @@
 		5829B6F02B9E177700229EC9 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		5829B6F22B9E189C00229EC9 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
 		5829B6F32B9E18CC00229EC9 /* shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
-		5829B6F62BA5AE0500229EC9 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		5829B6F72BA5AE0500229EC9 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		5829B6FB2BA9F40600229EC9 /* stb_image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
 		5829B6FE2BA9FB0700229EC9 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
@@ -71,7 +70,6 @@
 		5829B7012BAB315E00229EC9 /* basic_lighting.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = basic_lighting.fs; sourceTree = "<group>"; };
 		5829B7022BAB31B600229EC9 /* light_cube.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light_cube.vs; sourceTree = "<group>"; };
 		5829B7032BAB31C900229EC9 /* light_cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light_cube.fs; sourceTree = "<group>"; };
-		5829B7042BAB327000229EC9 /* texture_instructions */ = {isa = PBXFileReference; lastKnownFileType = text; path = texture_instructions; sourceTree = "<group>"; };
 		5829B74D2BC681CB00229EC9 /* flecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flecs.h; sourceTree = "<group>"; };
 		5829B74E2BC681CB00229EC9 /* flecs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flecs.c; sourceTree = "<group>"; };
 		5829B7582BC6DAB300229EC9 /* component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = component.hpp; sourceTree = "<group>"; };
@@ -99,20 +97,8 @@
 		5829B7AB2BD5B86000229EC9 /* imgui_impl_glfw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_glfw.cpp; sourceTree = "<group>"; };
 		5829B7AE2BD854E500229EC9 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
 		5829B7B12BD9A2FC00229EC9 /* mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mesh.hpp; sourceTree = "<group>"; };
-		5829B7B32BD9AF3400229EC9 /* model_loading.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = model_loading.vs; sourceTree = "<group>"; };
-		5829B7B42BD9AF5900229EC9 /* model_loading.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = model_loading.fs; sourceTree = "<group>"; };
-		5829B7CA2BD9B0FC00229EC9 /* diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = diffuse.jpg; sourceTree = "<group>"; };
-		5829B7CB2BD9B0FC00229EC9 /* roughness.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roughness.jpg; sourceTree = "<group>"; };
-		5829B7CC2BD9B0FC00229EC9 /* specular.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = specular.jpg; sourceTree = "<group>"; };
-		5829B7CD2BD9B0FC00229EC9 /* backpack.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = backpack.mtl; sourceTree = "<group>"; };
-		5829B7CE2BD9B0FC00229EC9 /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
-		5829B7CF2BD9B0FC00229EC9 /* source_attribution.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = source_attribution.txt; sourceTree = "<group>"; };
-		5829B7D02BD9B0FC00229EC9 /* ao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ao.jpg; sourceTree = "<group>"; };
-		5829B7D12BD9B0FC00229EC9 /* backpack.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = backpack.obj; sourceTree = "<group>"; };
 		584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../usr/local/Cellar/glfw/3.4/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
 		584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
-		589C5CEA2BE7ED7F009E2A2C /* render.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = render.hpp; sourceTree = "<group>"; };
-		58A4C3922BE1C9A2001C8EB8 /* obb_picking.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = obb_picking.hpp; sourceTree = "<group>"; };
 		58BB6C9B2BE802600019D746 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
 		58BB6C9E2BE84F610019D746 /* chunk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chunk.cpp; sourceTree = "<group>"; };
 		58BB6C9F2BE84F610019D746 /* chunk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chunk.hpp; sourceTree = "<group>"; };
@@ -120,17 +106,21 @@
 		58BB6CA42BE850740019D746 /* mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mesh.hpp; sourceTree = "<group>"; };
 		58BB6CA62BE8510C0019D746 /* voxel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = voxel.cpp; sourceTree = "<group>"; };
 		58BB6CA72BE8510C0019D746 /* voxel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = voxel.hpp; sourceTree = "<group>"; };
-		58BB6CA92BE86AF60019D746 /* vertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex.vs; sourceTree = "<group>"; };
-		58BB6CAA2BE86B1B0019D746 /* fragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment.fs; sourceTree = "<group>"; };
 		58BB6CAF2BE86C310019D746 /* texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		58BB6CB22BE87B2C0019D746 /* perlin_noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = perlin_noise.hpp; sourceTree = "<group>"; };
 		58BB6CB52BE9BEC70019D746 /* ge_light_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ge_light_test.png; sourceTree = "<group>"; };
 		58BB6CB62BE9BEC80019D746 /* perlin_noise_chunk_generation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perlin_noise_chunk_generation.png; sourceTree = "<group>"; };
 		58BB6CB72BE9BFD20019D746 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		58BB6CB82BE9C06A0019D746 /* shadowVertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowVertex.vs; sourceTree = "<group>"; };
-		58BB6CB92BE9C0780019D746 /* shadowFragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowFragment.fs; sourceTree = "<group>"; };
-		58BB6CBA2BE9C16A0019D746 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		58BB6CBF2BF180610019D746 /* FastNoiseLite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FastNoiseLite.hpp; sourceTree = "<group>"; };
+		58FFF68E2BF8098B00FD39D9 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
+		58FFF6962BF80D1B00FD39D9 /* picker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = picker.cpp; sourceTree = "<group>"; };
+		58FFF6972BF80D1B00FD39D9 /* picker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = picker.hpp; sourceTree = "<group>"; };
+		58FFF6992BF80D6200FD39D9 /* colorPick.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colorPick.fs; sourceTree = "<group>"; };
+		58FFF69A2BF80D7200FD39D9 /* colorPick.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colorPick.vs; sourceTree = "<group>"; };
+		58FFF69B2BF97B2000FD39D9 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		58FFF69C2BF97B2000FD39D9 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
+		58FFF69E2BF9822900FD39D9 /* default.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.vs; sourceTree = "<group>"; };
+		58FFF69F2BF9823900FD39D9 /* default.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +128,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58FFF68F2BF8098B00FD39D9 /* libGLEW.2.1.0.dylib in Frameworks */,
 				584B1A0E2BE7F5A600F044FB /* libglfw.3.4.dylib in Frameworks */,
-				584B1A102BE7F60900F044FB /* libGLEW.2.2.0.dylib in Frameworks */,
 				58232BCE2B972B870030E891 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,14 +158,12 @@
 		58232BB72B9725BE0030E891 /* game_engine */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF6912BF80A0C00FD39D9 /* dependencies */,
 				58BB6CB42BE9BE9D0019D746 /* photos */,
+				58FFF6922BF80BD700FD39D9 /* render */,
 				58BB6C9D2BE84F520019D746 /* map */,
-				5829B7B52BD9B02D00229EC9 /* assets */,
-				5829B7932BD5B71A00229EC9 /* gui */,
 				5829B74C2BC680FC00229EC9 /* ecs */,
 				5829B6FD2BA9FAEA00229EC9 /* camera */,
-				5829B6F52BA5ADF100229EC9 /* texture */,
-				5829B6ED2B9E171200229EC9 /* shader */,
 				5829B6EA2B9E135A00229EC9 /* glad.c */,
 				58232BD22B972C1B0030E891 /* game_engine.entitlements */,
 				58232BB82B9725BE0030E891 /* main.cpp */,
@@ -186,43 +174,12 @@
 		58232BBF2B9726230030E891 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58FFF68E2BF8098B00FD39D9 /* libGLEW.2.1.0.dylib */,
 				584B1A0F2BE7F60900F044FB /* libGLEW.2.2.0.dylib */,
 				584B1A0D2BE7F5A600F044FB /* libglfw.3.4.dylib */,
 				58232BC02B9726230030E891 /* OpenGL.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5829B6ED2B9E171200229EC9 /* shader */ = {
-			isa = PBXGroup;
-			children = (
-				5829B6F02B9E177700229EC9 /* shader.hpp */,
-				5829B6F22B9E189C00229EC9 /* shader.vs */,
-				5829B6F32B9E18CC00229EC9 /* shader.fs */,
-				5829B6FF2BAB314B00229EC9 /* basic_lighting.vs */,
-				5829B7012BAB315E00229EC9 /* basic_lighting.fs */,
-				5829B7022BAB31B600229EC9 /* light_cube.vs */,
-				5829B7032BAB31C900229EC9 /* light_cube.fs */,
-				5829B7B32BD9AF3400229EC9 /* model_loading.vs */,
-				5829B7B42BD9AF5900229EC9 /* model_loading.fs */,
-				58BB6CA92BE86AF60019D746 /* vertex.vs */,
-				58BB6CAA2BE86B1B0019D746 /* fragment.fs */,
-				58BB6CB82BE9C06A0019D746 /* shadowVertex.vs */,
-				58BB6CB92BE9C0780019D746 /* shadowFragment.fs */,
-			);
-			path = shader;
-			sourceTree = "<group>";
-		};
-		5829B6F52BA5ADF100229EC9 /* texture */ = {
-			isa = PBXGroup;
-			children = (
-				5829B6F62BA5AE0500229EC9 /* container.jpg */,
-				5829B6F72BA5AE0500229EC9 /* stb_image.h */,
-				5829B6FB2BA9F40600229EC9 /* stb_image.cpp */,
-				5829B7042BAB327000229EC9 /* texture_instructions */,
-				58BB6CAF2BE86C310019D746 /* texture.hpp */,
-			);
-			path = texture;
 			sourceTree = "<group>";
 		};
 		5829B6FD2BA9FAEA00229EC9 /* camera */ = {
@@ -239,8 +196,6 @@
 				5829B7522BC6831C00229EC9 /* system */,
 				5829B7512BC6831600229EC9 /* component */,
 				5829B7502BC6830D00229EC9 /* entity */,
-				5829B74E2BC681CB00229EC9 /* flecs.c */,
-				5829B74D2BC681CB00229EC9 /* flecs.h */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -255,8 +210,6 @@
 				5829B7792BD2011300229EC9 /* gui.hpp */,
 				5829B7AE2BD854E500229EC9 /* model.hpp */,
 				5829B7B12BD9A2FC00229EC9 /* mesh.hpp */,
-				58A4C3922BE1C9A2001C8EB8 /* obb_picking.hpp */,
-				589C5CEA2BE7ED7F009E2A2C /* render.hpp */,
 				58BB6C9B2BE802600019D746 /* world.hpp */,
 			);
 			path = entity;
@@ -275,38 +228,6 @@
 			children = (
 			);
 			path = system;
-			sourceTree = "<group>";
-		};
-		5829B7932BD5B71A00229EC9 /* gui */ = {
-			isa = PBXGroup;
-			children = (
-				58A4C3B42BE6FD2E001C8EB8 /* imgui */,
-			);
-			path = gui;
-			sourceTree = "<group>";
-		};
-		5829B7B52BD9B02D00229EC9 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				58BB6CBA2BE9C16A0019D746 /* atlas.png */,
-				5829B7C92BD9B0E300229EC9 /* backpack */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		5829B7C92BD9B0E300229EC9 /* backpack */ = {
-			isa = PBXGroup;
-			children = (
-				5829B7D02BD9B0FC00229EC9 /* ao.jpg */,
-				5829B7CD2BD9B0FC00229EC9 /* backpack.mtl */,
-				5829B7D12BD9B0FC00229EC9 /* backpack.obj */,
-				5829B7CA2BD9B0FC00229EC9 /* diffuse.jpg */,
-				5829B7CE2BD9B0FC00229EC9 /* normal.png */,
-				5829B7CB2BD9B0FC00229EC9 /* roughness.jpg */,
-				5829B7CF2BD9B0FC00229EC9 /* source_attribution.txt */,
-				5829B7CC2BD9B0FC00229EC9 /* specular.jpg */,
-			);
-			path = backpack;
 			sourceTree = "<group>";
 		};
 		58A4C3B42BE6FD2E001C8EB8 /* imgui */ = {
@@ -358,8 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				58BB6CA72BE8510C0019D746 /* voxel.hpp */,
-				58BB6CA42BE850740019D746 /* mesh.hpp */,
 				58BB6C9F2BE84F610019D746 /* chunk.hpp */,
+				58BB6CA42BE850740019D746 /* mesh.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -371,6 +292,65 @@
 				58BB6CB62BE9BEC80019D746 /* perlin_noise_chunk_generation.png */,
 			);
 			path = photos;
+			sourceTree = "<group>";
+		};
+		58FFF6912BF80A0C00FD39D9 /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				5829B74E2BC681CB00229EC9 /* flecs.c */,
+				5829B74D2BC681CB00229EC9 /* flecs.h */,
+				5829B6F72BA5AE0500229EC9 /* stb_image.h */,
+				5829B6FB2BA9F40600229EC9 /* stb_image.cpp */,
+				58A4C3B42BE6FD2E001C8EB8 /* imgui */,
+			);
+			path = dependencies;
+			sourceTree = "<group>";
+		};
+		58FFF6922BF80BD700FD39D9 /* render */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF6932BF80BE700FD39D9 /* shaders */,
+				58FFF6942BF80CFF00FD39D9 /* include */,
+				58FFF6952BF80D0900FD39D9 /* src */,
+			);
+			path = render;
+			sourceTree = "<group>";
+		};
+		58FFF6932BF80BE700FD39D9 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF69E2BF9822900FD39D9 /* default.vs */,
+				58FFF69F2BF9823900FD39D9 /* default.fs */,
+				5829B6F22B9E189C00229EC9 /* shader.vs */,
+				5829B6F32B9E18CC00229EC9 /* shader.fs */,
+				5829B6FF2BAB314B00229EC9 /* basic_lighting.vs */,
+				5829B7012BAB315E00229EC9 /* basic_lighting.fs */,
+				5829B7022BAB31B600229EC9 /* light_cube.vs */,
+				5829B7032BAB31C900229EC9 /* light_cube.fs */,
+				58FFF6992BF80D6200FD39D9 /* colorPick.fs */,
+				58FFF69A2BF80D7200FD39D9 /* colorPick.vs */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		58FFF6942BF80CFF00FD39D9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF69C2BF97B2000FD39D9 /* renderer.hpp */,
+				58FFF6972BF80D1B00FD39D9 /* picker.hpp */,
+				5829B6F02B9E177700229EC9 /* shader.hpp */,
+				58BB6CAF2BE86C310019D746 /* texture.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		58FFF6952BF80D0900FD39D9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				58FFF69B2BF97B2000FD39D9 /* renderer.cpp */,
+				58FFF6962BF80D1B00FD39D9 /* picker.cpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,6 +415,7 @@
 				5829B6FA2BA9F37300229EC9 /* stb_image.h in Sources */,
 				5829B7A32BD5B78F00229EC9 /* imgui_widgets.cpp in Sources */,
 				5829B6FC2BA9F40600229EC9 /* stb_image.cpp in Sources */,
+				58FFF69D2BF97B2000FD39D9 /* renderer.cpp in Sources */,
 				5829B7A62BD5B78F00229EC9 /* imgui_draw.cpp in Sources */,
 				5829B7A42BD5B78F00229EC9 /* imgui_impl_opengl3.cpp in Sources */,
 				5829B7A82BD5B78F00229EC9 /* imgui.cpp in Sources */,
@@ -443,6 +424,7 @@
 				58BB6CA52BE850740019D746 /* mesh.cpp in Sources */,
 				5829B7AC2BD5B86000229EC9 /* imgui_impl_glfw.cpp in Sources */,
 				5829B74F2BC681CB00229EC9 /* flecs.c in Sources */,
+				58FFF6982BF80D1B00FD39D9 /* picker.cpp in Sources */,
 				5829B7A52BD5B78F00229EC9 /* imgui_tables.cpp in Sources */,
 				5829B7A72BD5B78F00229EC9 /* imgui_demo.cpp in Sources */,
 				5829B6EB2B9E135A00229EC9 /* glad.c in Sources */,

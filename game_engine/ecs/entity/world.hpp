@@ -13,10 +13,11 @@
 
 #include <string>
 #include <stdio.h>
-#include "../../map/include/chunk.hpp"
-#include "../component/component.hpp"
-#include "../flecs.h"
-#include "../../map/include/voxel.hpp"
+#include "map/include/chunk.hpp"
+#include "map/include/voxel.hpp"
+
+#include "ecs/component/component.hpp"
+#include "dependencies/flecs.h"
 
 void chunkRenderer(flecs::world& ecs, Component::World& world, int xpos, int ypos){
     flecs::entity world_entity = ecs.lookup("world");

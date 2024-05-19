@@ -12,13 +12,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "shader/shader.hpp"
-#include "texture/stb_image.h"
+#include "render/include/shader.hpp"
+#include "dependencies/stb_image.h"
 
-#include "gui/imgui/imgui.h"
-#include "ecs/flecs.h"
+#include "dependencies/imgui/imgui.h"
+#include "dependencies/flecs.h"
 #include "ecs/entity/entity.hpp"
 #include "ecs/component/component.hpp"
+
+#include "render/include/renderer.hpp"
 
 #include <stdlib.h>
 #include <stddef.h>
@@ -68,7 +70,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create OpenGL window and context
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "game_engine v0.0.1", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1450, 800, "game_engine v0.0.1", NULL, NULL);
     glfwMakeContextCurrent(window);
 
     // Check for window creation failure
@@ -94,6 +96,10 @@ int main()
     
     // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
     stbi_set_flip_vertically_on_load(true);
+    
+    /** SETUP RENDERER CLASS */
+    Renderer render;
+    render.Setup();
     
     // build and compile our shader program
     glEnable(GL_DEPTH_TEST);
@@ -141,16 +147,18 @@ int main()
         
         world.progress();
         
+        render.Render(world);
+        
+        //render gui
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
     
     // de-allocate all resources once they've outlived their purpose:
-    flecs::query<Component::Renderer> deallocateRenderer = world.query<Component::Renderer>();
-    deallocateRenderer.each([](flecs::entity e, Component::Renderer& render) {
-        glDeleteVertexArrays(1, &render.VAO);
-        glDeleteBuffers(1, &render.VBO);
-    });
+    render.Cleanup();
     
     flecs::query<Component::GUI> deallocateGUI = world.query<Component::GUI>();
     deallocateGUI.each([](flecs::entity gui, Component::GUI& g) {

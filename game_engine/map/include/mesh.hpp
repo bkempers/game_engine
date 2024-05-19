@@ -19,7 +19,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "../../shader/shader.hpp"
+#include "render/include/shader.hpp"
 
 class Mesh{
 public:
