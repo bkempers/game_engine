@@ -7,6 +7,9 @@
 
 #include "renderer.hpp"
 
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
+
 //Cube information
 float vertices[216] = {
     -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -59,6 +62,8 @@ Renderer::Renderer()
 
 bool Renderer::Setup()
 {
+    LOG_INFO("Setting up OPENGL renderer");
+    
     //GPU buffer for larger set of vertices
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -80,7 +85,7 @@ bool Renderer::Setup()
     
     setupShaders();
     
-    picker.setup();
+    //picker.setup();
     
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     return true;
@@ -100,9 +105,8 @@ void Renderer::setupShaders()
 
 }
 
-void Renderer::Render(flecs::world& world)
+void Renderer::Render(World *map, flecs::world& world)
 {
-    flecs::entity world_entity = world.lookup("world");
     flecs::entity camera_entity = world.lookup("camera");
     const Component::Camera* camera_component = camera_entity.get<Component::Camera>();
     
@@ -141,11 +145,17 @@ void Renderer::Render(flecs::world& world)
     cubeShader.setVec3("lightPos", lightPos);
     cubeShader.setVec3("viewPos", camera_component->position);
     
-    const Component::World* world_component = world_entity.get<Component::World>();
-    for(Chunk chunk : world_component->map){
+    flecs::entity world_entity = world.lookup("world");
+    const Component::World_Entity* world_component = world_entity.get<Component::World_Entity>();
+    for(Chunk chunk : world_component->world->map){
 //                glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(chunk.position.x, 0, chunk.position.y));
 //                render.shader.setMat4("model", model);
         cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         chunk.chunk_mesh.draw();
+    }
+    
+    //Loop over the Stuff
+    for(unsigned int i = 0; i < map->map.size(); i++){
+      map->map[i].model.render();               //Render Scene
     }
 }

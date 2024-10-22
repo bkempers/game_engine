@@ -15,6 +15,9 @@
 #include "../component/component.hpp"
 #include "../flecs.h"
 
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
+
 // Default camera values
 const float CAMERA_YAW         = -90.0f;
 const float CAMERA_PITCH       =  0.0f;
@@ -26,6 +29,8 @@ void Camera_Systems(flecs::world& ecs) {
     ecs.system<Component::Camera>("mouseCallback")
         .kind(flecs::OnLoad)
         .each([&ecs](flecs::entity camera, Component::Camera& c){
+            //LOG_INFO("Entity: Initializing Camera");
+
             flecs::entity window_entity = ecs.lookup("main_window");
             const Component::Window* window_component = window_entity.get<Component::Window>();
             double xpos, ypos;

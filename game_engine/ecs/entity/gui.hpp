@@ -20,10 +20,14 @@
 #include "../component/component.hpp"
 #include "../flecs.h"
 
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
+
 void GUI_Systems(flecs::world& ecs){
     ecs.system<Component::GUI>("guiInit")
         .kind(flecs::OnStart)
         .each([&ecs](flecs::entity gui, Component::GUI& g){
+            LOG_INFO("Entity: Initializing GUI");
             flecs::entity window_entity = ecs.lookup("main_window");
             const Component::Window* window_component = window_entity.get<Component::Window>();
             

@@ -8,7 +8,8 @@
 #include "picker.hpp"
 
 void Picker::setup(){
-  shaderColorPick.setupShader("../shaders/pick/colorPick.vs", "../shaders/pick/colorPick.fs");
+  shaderColorPick.setupShader("/Users/benkempers/Developer/Projects/game_engine/game_engine/render/shaders/pick/colorPick.vs",
+                              "/Users/benkempers/Developer/Projects/game_engine/game_engine/render/shaders/pick/colorPick.fs");
   shaderColorPick.addAttribute("in_Position", 0);
 
   //Setup the VAO and stuff

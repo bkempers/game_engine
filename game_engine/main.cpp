@@ -21,6 +21,10 @@
 #include "ecs/component/component.hpp"
 
 #include "render/include/renderer.hpp"
+#include "map/include/world.hpp"
+
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
 
 #include <stdlib.h>
 #include <stddef.h>
@@ -58,6 +62,11 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 // Define main function
 int main()
 {
+    /** Setup QUILL Logger & Macros */
+    setup_quill("game_engine.log");
+    global_logger_a->set_log_level(quill::LogLevel::TraceL3);
+    LOG_INFO("Setting up QUILL logger");
+    
     //Output the associated GLFW error
     glfwSetErrorCallback(error_callback);
 
@@ -68,7 +77,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-
+    
     // Create OpenGL window and context
     GLFWwindow* window = glfwCreateWindow(1450, 800, "game_engine v0.0.1", NULL, NULL);
     glfwMakeContextCurrent(window);
@@ -77,6 +86,7 @@ int main()
     if (!window)
     {
         // Terminate GLFW
+        LOG_ERROR("Failed to initialize GLFW window");
         glfwTerminate();
         return 1;
     }
@@ -84,7 +94,7 @@ int main()
     // glad: load all OpenGL function pointers
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cout << "Failed to initialize GLAD" << std::endl;
+        LOG_ERROR("Failed to initialize GLAD");
         return -1;
     }
     
@@ -100,7 +110,7 @@ int main()
     /** SETUP RENDERER CLASS */
     Renderer render;
     render.Setup();
-    
+
     // build and compile our shader program
     glEnable(GL_DEPTH_TEST);
     // enable face culling
@@ -113,6 +123,8 @@ int main()
     flecs::entity gui_entity = world.lookup("gui");
 
     // Event loop
+    LOG_INFO("Entering main game loop");
+    
     double lastTime = glfwGetTime();
     int nbFrames = 0;
     while(!glfwWindowShouldClose(window))
@@ -146,8 +158,11 @@ int main()
         });
         
         world.progress();
+                
+        flecs::entity world_entity = world.lookup("world");
+        const Component::World_Entity* world_component = world_entity.get<Component::World_Entity>();
         
-        render.Render(world);
+        render.Render(world_component->world, world);
         
         //render gui
         ImGui::Render();
@@ -166,9 +181,7 @@ int main()
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
     });
-    
-    //gui.Remove();
-    
+
     // Terminate GLFW
     glfwTerminate(); return 0;
 }

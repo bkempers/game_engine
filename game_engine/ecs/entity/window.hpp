@@ -18,10 +18,15 @@
 #include "../component/component.hpp"
 #include "../flecs.h"
 
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
+
 void Window_Systems(flecs::world& ecs) {
     ecs.system<Component::Window>("windowKeyboardCallback")
         .kind(flecs::OnLoad)
         .each([&ecs](flecs::entity window, Component::Window& w){
+            //LOG_INFO("Entity: Initializing Window");
+
             flecs::entity camera_entity = ecs.lookup("camera");
 
             // close window

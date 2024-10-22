@@ -17,6 +17,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "map/include/chunk.hpp"
+#include "map/include/world.hpp"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
@@ -99,20 +100,19 @@ public:
         float fps;
     };
 
-    struct World{
-        std::vector<Chunk> map;
-        double lastChunkUpdate = glfwGetTime();
+    struct World_Entity{
+        World *world;
     };
 
     static void ReadComponent(flecs::world& ecs, flecs::entity& entity, flecs::id& id)
     {
         //World entity ID
-        if(id == ecs.id<Component::World>())
+        if(id == ecs.id<Component::World_Entity>())
         {
-            const World* component = entity.get<World>();
+            const World_Entity* component = entity.get<World_Entity>();
             if(ImGui::TreeNode("Chunk Map")){
                 int chunk_count = 0;
-                for(const Chunk& chunk : component->map){
+                for(const Chunk& chunk : component->world->map){
                     if(ImGui::TreeNode((void *)(intptr_t)chunk_count, "Chunk %d", chunk_count)){
                         ImGui::Text("Position: %s", glm::to_string(chunk.position).c_str());
                         

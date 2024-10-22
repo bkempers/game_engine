@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -24,6 +25,8 @@
 #include "picker.hpp"
 #include "shader.hpp"
 #include "texture.hpp"
+#include "map/include/model.hpp"
+#include "map/include/world.hpp"
 
 class Renderer{
 public:
@@ -42,9 +45,42 @@ public:
     Shader cubeShader;
     Shader lightShader;
 
-    void Render(flecs::world& world);
+    void Render(World *map, flecs::world& world);
+
     
 private:
 };
+
+
+//void Renderer::loadChunkModels(World &world, flecs::world& e_world)
+//{
+//    flecs::entity camera_entity = e_world.lookup("camera");
+//    const Component::Camera* camera_component = camera_entity.get<Component::Camera>();
+//    glm::vec3 viewPos = camera_component->position;
+//    
+//    //Loop over all chunks
+//    for(unsigned int i = 0; i < world.map.size(); i++){
+//
+//      //If we are at capacity, add a new item (i.e. only the newly added chunks are fully remodeled)
+//      if(i == models.size()){
+//        Model model;
+//        model.cpos = world.map[i].c_position;
+//        model.fromChunkGreedy(world.map[i]);
+//        model.setup();
+//        models.push_back(model);
+//      }
+//
+//      //Old chunks need to be translated too. Translate according to player position.
+//      glm::vec3 axis = (glm::vec3)(world.map[i].c_position)*(float)world.chunkSize-viewPos;
+//
+//      //Translate the guy
+//      models[i].reset();
+//      models[i].translate(axis);
+//        
+//      models[i].update();
+//    }
+//    //Make sure updateLOD is false
+//    //updateLOD = false;
+//}
 
 #endif /* renderer_hpp */

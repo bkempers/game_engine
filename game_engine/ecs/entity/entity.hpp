@@ -21,7 +21,12 @@
 #include "camera.hpp"
 #include "../component/component.hpp"
 
+#include "logger/logger.hpp"
+#include "logger/quill_wrapper.h"
+
 void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
+    LOG_INFO("Setting up FLECS entities");
+    
     //flecs window entity
     world.entity("main_window")
         .set([window](Component::Window& w, Component::Frame& f){
@@ -71,8 +76,9 @@ void setup_flecs_entities(flecs::world& world, GLFWwindow* window) {
 
     // flecs world entity
     world.entity("world")
-        .set([](Component::World& world){
-            
+        .set([](Component::World_Entity& world){
+            world.world = new World();
+            world.world->initialize();
         });
     World_Systems(world);
 }

@@ -119,3 +119,24 @@ int Voxel::faceToIndex(Voxel_Face face) {
     }
 };
 
+glm::vec4 Voxel::getColor(Voxel_Type type){
+  switch(type)
+  {
+    case STONE:
+        return glm::vec4(0.39f, 0.39f, 0.36f, 1.0f);
+        break;
+    case DIRT:
+        return glm::vec4(0.74f, 0.5f, 0.36f, 1.0f);
+        break;
+    case WATER:
+        return glm::vec4(0.3f, 0.57f, 0.67f, 0.8f); //Semi Transparent!
+        break;
+    case WOOD:
+        return glm::vec4(0.6f, 0.375f, 0.14f, 1.0f);
+        break;
+    default:
+        return glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
+        break;
+  }
+};
+

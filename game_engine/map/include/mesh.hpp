@@ -30,6 +30,8 @@ public:
         glm::vec3 normal;
         // texCoords
         glm::vec2 tex_coords;
+        // color
+        glm::vec3 color;
     };
 
     struct Texture {

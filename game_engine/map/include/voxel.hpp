@@ -26,6 +26,7 @@ const float CELL_SIZE = 1.0f/CANVAS_SIZE;
 // Voxel enums
 enum Voxel_Type {
     DEFAULT = 0,
+    AIR,
     GRASS,
     DIRT,
     WATER,
@@ -58,6 +59,7 @@ public:
     void loadFace(glm::vec3 position, Voxel_Face face, std::vector<Mesh::Vertex>& vertices, std::vector<unsigned int>& indices);
     glm::vec3 vectorMapping(Voxel_Face face);
     int faceToIndex(Voxel_Face face);
+    static glm::vec4 getColor(Voxel_Type _type);
 
 private:
     struct VoxelTexture {
